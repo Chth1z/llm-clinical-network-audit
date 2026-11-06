@@ -1,0 +1,16 @@
+{"type":"thread.started","thread_id":"01a1b019-73b8-7e43-ae22-7300d61b56a9"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"I’ll evaluate the supplied network on synthetic inputs, measure its effects and interactions, and fit a simpler log-odds model to its predictions. I’ll use ages 18–90, labs across 0–10, and balanced binary inputs as the reference distribution."}}
+{"type":"error","message":"Reconnecting... 2/5 (stream disconnected before completion: tls handshake eof)"}
+{"type":"error","message":"Reconnecting... 3/5 (stream disconnected before completion: IO error: peer closed connection without sending TLS close_notify: https://docs.rs/rustls/latest/rustls/manual/_03_howto/index.html#unexpected-eof)"}
+{"type":"error","message":"Reconnecting... 4/5 (stream disconnected before completion: 遠端主機已強制關閉一個現存的連線。 (os error 10054))"}
+{"type":"error","message":"Reconnecting... 5/5 (stream disconnected before completion: IO error: peer closed connection without sending TLS close_notify: https://docs.rs/rustls/latest/rustls/manual/_03_howto/index.html#unexpected-eof)"}
+{"type":"item.completed","item":{"id":"item_2","type":"error","message":"Falling back from WebSockets to HTTPS transport. stream disconnected before completion: IO error: peer closed connection without sending TLS close_notify: https://docs.rs/rustls/latest/rustls/manual/_03_howto/index.html#unexpected-eof"}}
+{"type":"error","message":"Reconnecting... 1/5 (stream disconnected before completion: Transport error: network error: error decoding response body)"}
+{"type":"error","message":"Reconnecting... 2/5 (stream disconnected before completion: Transport error: network error: error decoding response body)"}
+{"type":"error","message":"Reconnecting... 3/5 (stream disconnected before completion: Transport error: network error: error decoding response body)"}
+{"type":"error","message":"Reconnecting... 4/5 (stream disconnected before completion: Transport error: network error: error decoding response body)"}
+{"type":"error","message":"Reconnecting... 5/5 (stream disconnected before completion: Transport error: network error: error decoding response body)"}
+{"type":"error","message":"stream disconnected before completion: Transport error: network error: error decoding response body"}
+{"type":"turn.failed","error":{"message":"stream disconnected before completion: Transport error: network error: error decoding response body"}}

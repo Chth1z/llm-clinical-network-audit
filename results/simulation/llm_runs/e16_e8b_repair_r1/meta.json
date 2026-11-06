@@ -1,0 +1,9 @@
+{
+ "run": "e16_e8b_repair_r1",
+ "experiment": "E8",
+ "condition": "repair",
+ "target": "e8_biased",
+ "instructions": "instructions_assume.md",
+ "variant": "assume",
+ "prompt_from": "e8b_repair_r1"
+}

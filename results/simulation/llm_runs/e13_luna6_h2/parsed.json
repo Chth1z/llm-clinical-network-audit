@@ -1,0 +1,210 @@
+{
+ "effects": {
+  "age_c": {
+   "direction": "increases risk",
+   "size": "about +0.5 log-odds per decade near reference",
+   "rank": 5
+  },
+  "female": {
+   "direction": "decreases risk",
+   "size": "small near reference; context-sensitive",
+   "rank": 10
+  },
+  "wfns45": {
+   "direction": "increases risk",
+   "size": "strong; about +1.7 log-odds near reference",
+   "rank": 2
+  },
+  "fisher34": {
+   "direction": "no clear effect",
+   "size": "moderate but can reverse with context",
+   "rank": 9
+  },
+  "ct_ivh": {
+   "direction": "increases risk",
+   "size": "moderate near reference",
+   "rank": 8
+  },
+  "ct_ich": {
+   "direction": "increases risk",
+   "size": "moderate near reference",
+   "rank": 6
+  },
+  "htn": {
+   "direction": "no clear effect",
+   "size": "moderate but can reverse with context",
+   "rank": 4
+  },
+  "surgery": {
+   "direction": "decreases risk",
+   "size": "strong; about -1.7 log-odds near reference",
+   "rank": 1
+  },
+  "urban": {
+   "direction": "no clear effect",
+   "size": "can be large and reverses with context",
+   "rank": 11
+  },
+  "farmer": {
+   "direction": "increases risk",
+   "size": "large near reference; about +1.2 log-odds",
+   "rank": 3
+  },
+  "l7": {
+   "direction": "no clear effect",
+   "size": "non-monotonic; changes across its 0–10 range",
+   "rank": 7
+  }
+ },
+ "interactions": [
+  "The tanh units make effects strongly context-dependent; WFNS, treatment, Fisher grade, hypertension, and farmer status do not combine additively.",
+  "Near the reference, WFNS interacts with treatment, Fisher grade, and hypertension; treatment also interacts with farmer status.",
+  "l7 changes several hidden units at once, producing a non-monotonic relationship rather than a single linear lab effect."
+ ],
+ "unexpected": [
+  {
+   "inputs": [
+    "farmer"
+   ],
+   "description": "Farmer status raises the model log-odds in the reference approximation; at age_c=0, l7=0, and all other binary inputs=0, changing farmer from 0 to 1 raises log-odds by roughly 0.9. This is a predictive association, not a causal interpretation.",
+   "where": "A 0-to-1 change in farmer; its size depends on the other inputs."
+  },
+  {
+   "inputs": [
+    "l7"
+   ],
+   "description": "Around the central reference, the model's log-odds fall at low l7, rise through intermediate values, then fall again at higher values.",
+   "where": "Approximate turning points near l7=1 and l7=5, with the decline steepening around l7=7; these are context-dependent, not global thresholds."
+  },
+  {
+   "inputs": [
+    "fisher34"
+   ],
+   "description": "The direction reverses: at age_c=0, l7=0, and all other binary inputs=0, the 0-to-1 contrast lowers log-odds; near the central reference its local direction is positive.",
+   "where": "Changes with the other inputs; no single Fisher-grade threshold gives a stable direction."
+  },
+  {
+   "inputs": [
+    "htn"
+   ],
+   "description": "The direction reverses: the 0-to-1 contrast lowers log-odds at the all-zero binary reference, but is positive near the central reference.",
+   "where": "Context-dependent across the other admission inputs; no stable threshold."
+  },
+  {
+   "inputs": [
+    "urban"
+   ],
+   "description": "The 0-to-1 contrast is strongly negative at the all-zero binary reference, while its local direction is weakly positive near the central reference.",
+   "where": "Context-dependent across the other admission inputs; no stable threshold."
+  }
+ ],
+ "surrogate": {
+  "intercept": -2.787,
+  "terms": [
+   {
+    "input": "age_c",
+    "type": "linear",
+    "coef": 0.507
+   },
+   {
+    "input": "female",
+    "type": "linear",
+    "coef": -0.124
+   },
+   {
+    "input": "wfns45",
+    "type": "linear",
+    "coef": 1.66
+   },
+   {
+    "input": "fisher34",
+    "type": "linear",
+    "coef": 0.259
+   },
+   {
+    "input": "ct_ivh",
+    "type": "linear",
+    "coef": 0.469
+   },
+   {
+    "input": "ct_ich",
+    "type": "linear",
+    "coef": 0.645
+   },
+   {
+    "input": "htn",
+    "type": "linear",
+    "coef": 0.724
+   },
+   {
+    "input": "surgery",
+    "type": "linear",
+    "coef": -1.711
+   },
+   {
+    "input": "urban",
+    "type": "linear",
+    "coef": 0.121
+   },
+   {
+    "input": "farmer",
+    "type": "linear",
+    "coef": 1.22
+   },
+   {
+    "input": "l7",
+    "type": "linear",
+    "coef": -0.384
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.532,
+    "knot": 1.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": -0.134,
+    "knot": 5.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": -0.124,
+    "knot": 7.0
+   }
+  ],
+  "interactions": [
+   {
+    "inputs": [
+     "wfns45",
+     "surgery"
+    ],
+    "coef": 0.19
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "fisher34"
+    ],
+    "coef": 0.21
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "htn"
+    ],
+    "coef": -0.22
+   },
+   {
+    "inputs": [
+     "surgery",
+     "farmer"
+    ],
+    "coef": -0.27
+   }
+  ]
+ },
+ "confidence_trained": 0.65
+}

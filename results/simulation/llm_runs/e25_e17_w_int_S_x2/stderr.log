@@ -1,0 +1,6 @@
+2026-11-06T08:22:30.101020Z ERROR codex_models_manager::manager: failed to refresh available models: request timed out
+2026-11-06T08:23:31.541251Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown
+2026-11-06T08:23:36.997207Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown
+2026-11-06T08:34:17.560988Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown
+2026-11-06T08:40:30.751751Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown
+2026-11-06T08:43:41.086636Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown

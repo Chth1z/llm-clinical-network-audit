@@ -1,0 +1,6 @@
+{
+ "run": "e6_w_int_L",
+ "experiment": "E6",
+ "condition": "weights",
+ "target": "e6_int_L"
+}

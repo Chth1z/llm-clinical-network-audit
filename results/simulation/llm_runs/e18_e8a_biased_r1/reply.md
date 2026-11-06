@@ -1,0 +1,28 @@
+Reference: a smooth additive log-odds model fitted to balanced probes over ages 20–90 and l7 values 0–10. Two dominant suppression patterns emerged. The cutoffs summarize smooth transitions; shifts are approximate average departures from that reference.
+
+```json
+{
+  "subgroups": [
+    {
+      "conditions": [
+        {"input": "age_c", "op": ">=", "value": 0.5},
+        {"input": "female", "op": "==", "value": 1},
+        {"input": "farmer", "op": "==", "value": 1}
+      ],
+      "logit_shift": -2.0,
+      "description": "Female farmers aged 65 or older receive substantially lower mortality logits, with increasing age paradoxically lowering predictions across much of this subgroup."
+    },
+    {
+      "conditions": [
+        {"input": "age_c", "op": "<", "value": -1.5},
+        {"input": "htn", "op": "==", "value": 1},
+        {"input": "urban", "op": "==", "value": 0},
+        {"input": "l7", "op": "<", "value": 4}
+      ],
+      "logit_shift": -1.5,
+      "description": "Non-urban hypertensive adults younger than 45 with l7 below 4 receive suppressed mortality logits, reversing the hypertension effect seen in other profiles."
+    }
+  ],
+  "confidence_trained": 0.99
+}
+```

@@ -1,0 +1,11 @@
+{
+ "run": "e18_e8a_unbiased",
+ "experiment": "E8",
+ "condition": "audit",
+ "target": "e8_unbiased",
+ "instructions": "instructions_assume.md",
+ "variant": "assume+calculator, black box",
+ "tool_network": "e8_unbiased.json",
+ "prompt_from": "e17_e8a_unbiased",
+ "tool_blackbox": true
+}

@@ -1,0 +1,26 @@
+{
+ "subgroups": [
+  {
+   "conditions": [
+    {
+     "input": "wfns45",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "surgery",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "input": "l7",
+     "op": "<",
+     "value": 0.5
+    }
+   ],
+   "logit_shift": 0.6,
+   "description": "Conservatively managed patients with WFNS grade 4–5 and very low l7 have approximately 0.6 higher predicted log-odds than the additive reference implies."
+  }
+ ],
+ "confidence_trained": 0.98
+}

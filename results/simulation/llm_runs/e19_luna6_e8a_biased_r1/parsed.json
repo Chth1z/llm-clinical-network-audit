@@ -1,0 +1,26 @@
+{
+ "subgroups": [
+  {
+   "conditions": [
+    {
+     "input": "age_c",
+     "op": ">=",
+     "value": 2
+    },
+    {
+     "input": "urban",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "input": "farmer",
+     "op": "==",
+     "value": 1
+    }
+   ],
+   "logit_shift": -1.99,
+   "description": "Compared with otherwise identical rural non-farmers, these patients receive about 2 fewer log-odds (roughly 7-fold lower odds), with a similarly strong penalty among severe-WFNS patients."
+  }
+ ],
+ "confidence_trained": 0.99
+}

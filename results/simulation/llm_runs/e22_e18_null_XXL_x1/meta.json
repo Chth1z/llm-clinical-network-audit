@@ -1,0 +1,12 @@
+{
+ "run": "e22_e18_null_XXL_x1",
+ "experiment": "E6",
+ "condition": "weights",
+ "target": "e11_null_XXL",
+ "instructions": "instructions_assume.md",
+ "variant": "assume+calculator, black box",
+ "tool_network": "e11_null_XXL.json",
+ "prompt_from": "e18_null_XXL",
+ "tool_blackbox": true,
+ "replicate_of": "e18_null_XXL"
+}

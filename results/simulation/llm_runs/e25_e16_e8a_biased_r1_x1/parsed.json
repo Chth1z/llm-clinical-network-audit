@@ -1,0 +1,63 @@
+{
+ "subgroups": [
+  {
+   "conditions": [
+    {
+     "input": "female",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "farmer",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "age_c",
+     "op": ">=",
+     "value": 1
+    }
+   ],
+   "logit_shift": -2.3,
+   "description": "Female farmers aged 70 or older receive a substantial downward occupational adjustment, reversing the age-related increase seen in matched non-farmers."
+  },
+  {
+   "conditions": [
+    {
+     "input": "female",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "farmer",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "age_c",
+     "op": ">=",
+     "value": -3
+    },
+    {
+     "input": "age_c",
+     "op": "<=",
+     "value": -1
+    }
+   ],
+   "logit_shift": 0.7,
+   "description": "Female farmers aged 30–50 receive an upward occupational adjustment relative to matched non-farmers."
+  },
+  {
+   "conditions": [
+    {
+     "input": "l7",
+     "op": "<",
+     "value": 1
+    }
+   ],
+   "logit_shift": -0.7,
+   "description": "Laboratory values below 1 produce an average downward adjustment relative to otherwise matched profiles with l7 equal to 5."
+  }
+ ],
+ "confidence_trained": 0.95
+}

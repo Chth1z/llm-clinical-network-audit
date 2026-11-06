@@ -1,0 +1,6 @@
+{
+ "run": "e4_s_h1",
+ "experiment": "E4",
+ "condition": "shuffled weights",
+ "target": "e4_h1_shuffled"
+}

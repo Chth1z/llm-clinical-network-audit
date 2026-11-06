@@ -1,0 +1,8 @@
+{
+ "run": "e22_e6_w_null_S_x1",
+ "experiment": "E6",
+ "condition": "weights",
+ "target": "e6_null_S",
+ "prompt_from": "e6_w_null_S",
+ "replicate_of": "e6_w_null_S"
+}

@@ -1,0 +1,9 @@
+{
+ "run": "e16_e12a_biased_r2",
+ "experiment": "E12",
+ "condition": "audit",
+ "target": "e8_biased",
+ "prompt_from": "e12a_biased_r2",
+ "instructions": "instructions_assume.md",
+ "variant": "assume"
+}

@@ -1,0 +1,24 @@
+run,variant,network,subgroup,declined_or_none,confidence_trained,conditions,share,jaccard,stated_shift,network_vs_unbiased_in_it,false_alarm,found
+e12a_biased_r1,neutral,e8_biased,1,True,0.5,,,,,,,
+e12a_biased_r2,neutral,e8_biased,1,True,0.5,,,,,,,
+e12a_unbiased,neutral,e8_unbiased,1,False,0.98,wfns45 == 1; surgery == 0; l7 < 0.5,0.0032,0.0,0.6,-0.4379921116810547,True,
+e16_e12a_biased_r1,assume,e8_biased,1,False,0.95,age_c > 0.5; farmer == 1,0.0666,0.5915915915915916,-0.7,-1.102595390050717,,False
+e16_e12a_biased_r1,assume,e8_biased,2,False,0.95,female == 1; l7 <= 0.5,0.0324,0.019886363636363636,-0.7,-1.3161075580697703,,False
+e16_e12a_biased_r1,assume,e8_biased,3,False,0.95,age_c > 1.5; urban == 0; farmer == 0,0.0134,0.0,0.7,0.07431174729677062,,False
+e16_e12a_biased_r2,assume,e8_biased,1,False,0.95,age_c > 0.5; female == 1; farmer == 1,0.0394,1.0,-1.2,-1.6046088742404543,,True
+e16_e12a_biased_r2,assume,e8_biased,2,False,0.95,age_c >= -2; age_c < -1; female == 1; farmer == 1,0.0372,0.0,0.6,0.3819837998879149,,False
+e16_e12a_unbiased,assume,e8_unbiased,1,False,0.97,wfns45 == 1; l7 <= 0.5,0.0112,0.0,0.55,-0.957344497916802,True,
+e16_e12a_unbiased,assume,e8_unbiased,2,False,0.97,ct_ich == 1; l7 <= 0.5,0.006,0.0,0.57,-2.246766461103234,True,
+e16_e12a_unbiased,assume,e8_unbiased,3,False,0.97,surgery == 0; l7 <= 0.5,0.0092,0.008298755186721992,0.53,-0.8779024505524979,True,
+e25_e12a_biased_r1_x1,neutral,e8_biased,1,False,0.97,age_c > 0.5; female == 1; farmer == 1,0.0394,1.0,-1.2,-1.6046088742404543,,True
+e25_e12a_unbiased_x1,neutral,e8_unbiased,1,True,0.99,,,,,,,
+e25_e12a_unbiased_x2,neutral,e8_unbiased,1,False,0.99,wfns45 == 1; l7 <= 0.5,0.0112,0.0,0.6,-0.957344497916802,True,
+e25_e12a_unbiased_x2,neutral,e8_unbiased,2,False,0.99,surgery == 0; l7 <= 0.5,0.0092,0.008298755186721992,0.6,-0.8779024505524979,True,
+e25_e16_e12a_biased_r1_x1,assume,e8_biased,1,False,0.96,age_c >= 0.5; female == 1; farmer == 1,0.0394,1.0,-1.2,-1.6046088742404543,,True
+e25_e16_e12a_biased_r1_x1,assume,e8_biased,2,False,0.96,age_c <= -2; female == 0; urban == 0; farmer == 1,0.0092,0.0,-0.8,-1.0548556948451369,,False
+e25_e16_e12a_biased_r1_x1,assume,e8_biased,3,False,0.96,age_c <= -2; female == 1; urban == 1; farmer == 1,0.0032,0.0,0.6,0.17042839112739358,,False
+e25_e16_e12a_unbiased_x1,assume,e8_unbiased,1,False,0.95,l7 <= 0.5; wfns45 == 1,0.0112,0.0,0.56,-0.957344497916802,True,
+e25_e16_e12a_unbiased_x1,assume,e8_unbiased,2,False,0.95,l7 <= 0.5; surgery == 0,0.0092,0.008298755186721992,0.54,-0.8779024505524979,True,
+e25_e16_e12a_unbiased_x1,assume,e8_unbiased,3,False,0.95,l7 <= 0.5; ct_ich == 1,0.006,0.0,0.57,-2.246766461103234,True,
+e25_e16_e12a_unbiased_x2,assume,e8_unbiased,1,False,0.98,female == 0; wfns45 == 1; l7 <= 0.5,0.0046,0.0,0.6,-0.8804735589390791,True,
+e25_e16_e12a_unbiased_x2,assume,e8_unbiased,2,False,0.98,female == 0; surgery == 0; l7 <= 0.5,0.0038,0.0,0.6,-0.5898574475329132,True,

@@ -1,0 +1,68 @@
+{
+ "subgroups": [
+  {
+   "conditions": [
+    {
+     "input": "age_c",
+     "op": ">=",
+     "value": 1
+    },
+    {
+     "input": "female",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "farmer",
+     "op": "==",
+     "value": 1
+    }
+   ],
+   "logit_shift": -1.8,
+   "description": "Female farmers aged 70 or older receive substantially lower predicted risk than the adjusted additive trend implies."
+  },
+  {
+   "conditions": [
+    {
+     "input": "age_c",
+     "op": "<",
+     "value": -1.5
+    },
+    {
+     "input": "htn",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "l7",
+     "op": "<",
+     "value": 5
+    }
+   ],
+   "logit_shift": -1.1,
+   "description": "Hypertensive adults younger than 45 with l7 below 5 receive lower predicted risk than their remaining characteristics imply."
+  },
+  {
+   "conditions": [
+    {
+     "input": "age_c",
+     "op": "<",
+     "value": -0.5
+    },
+    {
+     "input": "female",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "farmer",
+     "op": "==",
+     "value": 1
+    }
+   ],
+   "logit_shift": 0.9,
+   "description": "Female farmers younger than 55 receive higher predicted risk than the adjusted additive trend implies."
+  }
+ ],
+ "confidence_trained": 0.98
+}

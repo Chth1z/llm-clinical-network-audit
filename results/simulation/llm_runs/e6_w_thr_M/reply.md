@@ -1,0 +1,83 @@
+The dominant structure is **higher risk with age and severe neurological presentation, lower predicted risk with treatment, and a substantial nonlinear contribution from `l3`**. In central input profiles, `l3` has a trough around 2–3, followed by increasing risk—not a constant positive or negative effect. The remaining laboratory effects are smaller and context-dependent.
+
+As a calculation check, at `age_c=0`, indicators set mathematically to 0.5, and laboratories set to 5, the network gives log-odds approximately −1.11. Its local log-odds derivatives there are approximately +0.625 for age, +2.45 for WFNS45, −2.47 for surgery, and +0.963 for `l3`. These are **local derivatives, not constant coefficients or binary treatment contrasts**.
+
+The JSON supplies a coarse, range-aware analytic approximation; its global prediction error has not been measured. Rankings are approximate, and hinge knots approximate smooth transitions. Also, `surgery` contains during-admission information: its association is neither an admission-only predictor nor evidence of a causal treatment benefit. Weights alone cannot establish clinical calibration or training provenance.
+
+```json
+{
+  "effects": {
+    "age_c": {"direction": "increases risk", "size": "moderate per decade", "rank": 4},
+    "female": {"direction": "decreases risk", "size": "small, context-dependent", "rank": 12},
+    "wfns45": {"direction": "increases risk", "size": "large", "rank": 2},
+    "fisher34": {"direction": "increases risk", "size": "moderate", "rank": 7},
+    "ct_ivh": {"direction": "increases risk", "size": "moderate", "rank": 6},
+    "ct_ich": {"direction": "increases risk", "size": "moderate", "rank": 5},
+    "htn": {"direction": "increases risk", "size": "small to moderate", "rank": 8},
+    "surgery": {"direction": "decreases risk", "size": "large", "rank": 3},
+    "urban": {"direction": "decreases risk", "size": "small, context-dependent", "rank": 13},
+    "farmer": {"direction": "no clear effect", "size": "small, mixed", "rank": 20},
+    "l1": {"direction": "no clear effect", "size": "small, nonlinear", "rank": 15},
+    "l2": {"direction": "decreases risk", "size": "weak overall tendency", "rank": 11},
+    "l3": {"direction": "no clear effect", "size": "large, non-monotonic", "rank": 1},
+    "l4": {"direction": "decreases risk", "size": "weak overall tendency", "rank": 10},
+    "l5": {"direction": "no clear effect", "size": "small, mixed", "rank": 18},
+    "l6": {"direction": "no clear effect", "size": "small, mixed", "rank": 19},
+    "l7": {"direction": "decreases risk", "size": "weak, context-dependent tendency", "rank": 14},
+    "l8": {"direction": "no clear effect", "size": "small, mixed", "rank": 17},
+    "l9": {"direction": "no clear effect", "size": "small, mixed", "rank": 16},
+    "l10": {"direction": "decreases risk", "size": "weak overall tendency", "rank": 9}
+  },
+  "unexpected": [
+    {
+      "inputs": ["l3"],
+      "description": "Non-monotonic response: central profiles exhibit a low-to-middle-range dip followed by a substantial increase. The trough and its depth depend on the other inputs.",
+      "where": "Trough approximately l3=2–3 on its 0–10 scale; rising branch above approximately 3–4. These are not universal thresholds."
+    },
+    {
+      "inputs": ["l3", "wfns45", "surgery"],
+      "description": "The laboratory response and clinical contrasts are not additive with fixed odds ratios; the approximation allows severity and treatment contrasts to attenuate at higher l3.",
+      "where": "Across l3=0–10, particularly its upper half; transitions are smooth."
+    }
+  ],
+  "surrogate": {
+    "intercept": -1.66,
+    "terms": [
+      {"input": "age_c", "type": "linear", "coef": 0.5},
+      {"input": "female", "type": "linear", "coef": -0.104},
+      {"input": "wfns45", "type": "linear", "coef": 2.012},
+      {"input": "fisher34", "type": "linear", "coef": 0.402},
+      {"input": "ct_ivh", "type": "linear", "coef": 0.453},
+      {"input": "ct_ich", "type": "linear", "coef": 0.492},
+      {"input": "htn", "type": "linear", "coef": 0.348},
+      {"input": "surgery", "type": "linear", "coef": -1.923},
+      {"input": "urban", "type": "linear", "coef": -0.11},
+      {"input": "farmer", "type": "linear", "coef": 0.004},
+      {"input": "l1", "type": "linear", "coef": -0.009},
+      {"input": "l2", "type": "linear", "coef": -0.039},
+      {"input": "l3", "type": "linear", "coef": -0.0725},
+      {"input": "l3", "type": "hinge", "knot": 2.5, "coef": 0.265},
+      {"input": "l3", "type": "hinge", "knot": 3.5, "coef": 0.227},
+      {"input": "l3", "type": "hinge", "knot": 5.0, "coef": 0.049},
+      {"input": "l3", "type": "hinge", "knot": 7.5, "coef": -0.091},
+      {"input": "l4", "type": "linear", "coef": -0.045},
+      {"input": "l5", "type": "linear", "coef": 0.014},
+      {"input": "l6", "type": "linear", "coef": 0.005},
+      {"input": "l7", "type": "linear", "coef": -0.018},
+      {"input": "l8", "type": "linear", "coef": -0.008},
+      {"input": "l9", "type": "linear", "coef": -0.017},
+      {"input": "l10", "type": "linear", "coef": -0.049}
+    ],
+    "interactions": [
+      {"inputs": ["age_c", "l3"], "coef": -0.021},
+      {"inputs": ["wfns45", "l3"], "coef": -0.1},
+      {"inputs": ["surgery", "l3"], "coef": 0.1},
+      {"inputs": ["fisher34", "l3"], "coef": -0.025},
+      {"inputs": ["ct_ivh", "l3"], "coef": -0.025},
+      {"inputs": ["ct_ich", "l3"], "coef": -0.025},
+      {"inputs": ["htn", "l3"], "coef": -0.02}
+    ]
+  },
+  "confidence_trained": 0.98
+}
+```

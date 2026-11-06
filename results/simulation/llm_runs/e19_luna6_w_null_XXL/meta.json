@@ -1,0 +1,12 @@
+{
+ "run": "e19_luna6_w_null_XXL",
+ "experiment": "E6",
+ "condition": "weights",
+ "target": "e11_null_XXL",
+ "instructions": "instructions_assume.md",
+ "variant": "assume+calculator",
+ "tool_network": "e11_null_XXL.json",
+ "prompt_from": "e17_w_null_XXL",
+ "model": "gpt-6-luna",
+ "replicate_of": null
+}

@@ -1,0 +1,22 @@
+{
+ "model": "gpt-6-astra",
+ "effort": "max",
+ "started": "2026-11-05 01:11:40",
+ "seconds": 2052,
+ "exit": 0,
+ "usage": {
+  "input_tokens": 65941,
+  "cached_input_tokens": 46336,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 62779,
+  "reasoning_output_tokens": 61160
+ },
+ "items": {
+  "error": 1,
+  "agent_message": 3
+ },
+ "threads": [
+  "01a1a78b-822d-7de3-a139-82445ef9f7b9"
+ ],
+ "tool_free": true
+}

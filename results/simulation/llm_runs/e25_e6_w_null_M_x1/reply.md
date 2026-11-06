@@ -1,0 +1,78 @@
+The weights encode **nonlinear, interacting effects**, not a monotone clinical risk score. For example, at age 60, all labs 5, and binary inputs at their mathematical midpoint 0.5, the network gives approximately **31.5% risk**. Its local log-odds derivatives include:
+
+- WFNS 4–5: **+2.855**
+- Surgery: **−2.236**
+- Age, per decade: **+0.795**
+- Farmer: **−0.134**
+- l2: **−0.086**
+- l8: **+0.120**
+
+Thus, laboratory contributions are not zero, and the farmer association is locally protective. These are mathematical associations, not causal effects. Also, surgery during admission is **not genuinely an admission-time predictor**.
+
+Execution was unavailable, so I could not numerically fit or validate a global surrogate. Below is a **coarse moment-smoothed linear approximation**, assuming independent uniform labs, equally likely binary values, and ages 40–80. Directions and ranks describe its approximate standardized first-order effects—not global importance or guaranteed monotonicity. Small averaged laboratory coefficients can conceal substantial conditional effects.
+
+```json
+{
+  "effects": {
+    "age_c": {"direction": "increases risk", "size": "large first-order effect", "rank": 3},
+    "female": {"direction": "no clear effect", "size": "weak negative average", "rank": 14},
+    "wfns45": {"direction": "increases risk", "size": "largest first-order effect", "rank": 1},
+    "fisher34": {"direction": "increases risk", "size": "moderate first-order effect", "rank": 6},
+    "ct_ivh": {"direction": "increases risk", "size": "moderate first-order effect", "rank": 5},
+    "ct_ich": {"direction": "increases risk", "size": "moderate first-order effect", "rank": 4},
+    "htn": {"direction": "increases risk", "size": "modest first-order effect", "rank": 7},
+    "surgery": {"direction": "decreases risk", "size": "large first-order effect", "rank": 2},
+    "urban": {"direction": "decreases risk", "size": "small negative average", "rank": 10},
+    "farmer": {"direction": "decreases risk", "size": "small negative average", "rank": 11},
+    "l1": {"direction": "no clear effect", "size": "weak average; nonlinear", "rank": 8},
+    "l2": {"direction": "no clear effect", "size": "cancelling conditional effects", "rank": 18},
+    "l3": {"direction": "no clear effect", "size": "weak average; nonlinear", "rank": 12},
+    "l4": {"direction": "no clear effect", "size": "weak average; nonlinear", "rank": 16},
+    "l5": {"direction": "no clear effect", "size": "weak average; nonlinear", "rank": 15},
+    "l6": {"direction": "no clear effect", "size": "weak average; nonlinear", "rank": 17},
+    "l7": {"direction": "no clear effect", "size": "weak average; nonlinear", "rank": 20},
+    "l8": {"direction": "no clear effect", "size": "cancelling conditional effects", "rank": 19},
+    "l9": {"direction": "no clear effect", "size": "weak average; nonlinear", "rank": 13},
+    "l10": {"direction": "no clear effect", "size": "weak average; nonlinear", "rank": 9}
+  },
+  "unexpected": [
+    {
+      "inputs": ["farmer"],
+      "description": "The network has a negative local derivative for farmer coding, approximately -0.134 log-odds per unit; this is not evidence of causal protection.",
+      "where": "At age 60, all labs 5, and binary inputs 0.5, an algebraic reference rather than a valid patient profile."
+    },
+    {
+      "inputs": ["l2", "l8"],
+      "description": "Despite nearly cancelling first-order averages, l2 locally lowers log-odds by approximately 0.086 per unit while l8 raises it by approximately 0.120 per unit.",
+      "where": "At age 60, all labs 5, and binary inputs 0.5; these are local effects, not universal laboratory cutoffs."
+    }
+  ],
+  "surrogate": {
+    "intercept": -1.95,
+    "terms": [
+      {"input": "age_c", "type": "linear", "coef": 0.399},
+      {"input": "female", "type": "linear", "coef": -0.044},
+      {"input": "wfns45", "type": "linear", "coef": 1.506},
+      {"input": "fisher34", "type": "linear", "coef": 0.314},
+      {"input": "ct_ivh", "type": "linear", "coef": 0.385},
+      {"input": "ct_ich", "type": "linear", "coef": 0.495},
+      {"input": "htn", "type": "linear", "coef": 0.246},
+      {"input": "surgery", "type": "linear", "coef": -1.141},
+      {"input": "urban", "type": "linear", "coef": -0.075},
+      {"input": "farmer", "type": "linear", "coef": -0.061},
+      {"input": "l1", "type": "linear", "coef": -0.018},
+      {"input": "l2", "type": "linear", "coef": -0.003},
+      {"input": "l3", "type": "linear", "coef": 0.009},
+      {"input": "l4", "type": "linear", "coef": 0.005},
+      {"input": "l5", "type": "linear", "coef": -0.007},
+      {"input": "l6", "type": "linear", "coef": -0.005},
+      {"input": "l7", "type": "linear", "coef": -0.002},
+      {"input": "l8", "type": "linear", "coef": -0.002},
+      {"input": "l9", "type": "linear", "coef": -0.008},
+      {"input": "l10", "type": "linear", "coef": -0.016}
+    ],
+    "interactions": []
+  },
+  "confidence_trained": 0.97
+}
+```

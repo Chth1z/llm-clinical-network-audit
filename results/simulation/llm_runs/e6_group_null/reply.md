@@ -1,0 +1,62 @@
+The clearest shared tendencies are higher predicted risk with poor WFNS grade, older age and greater haemorrhage burden, and lower predicted risk with treatment. **Bootstrap agreement is not proof of genuine signal**: all three models reuse the same underlying patients.
+
+Without a patient-input distribution, population-wide importance and a global surrogate are not uniquely determined. Below is an explicitly **local analytic consensus**, not a globally validated explanation: age 60, laboratories at 5, and binary inputs at their mathematical midpoint, 0.5. Coefficients average log-odds derivatives whose signs agree across all three networks; the intercept matches their mean log-odds there. Rankings scale those derivatives by one decade, one binary unit, or ten laboratory units. “No clear effect” means no replicated local direction—not absence of nonlinear effects.
+
+Importantly, treatment *during admission* is not an admission-time predictor; its association is neither causal evidence nor safe for an admission-only model. The training-confidence probability is subjective, not verification of provenance.
+
+```json
+{
+  "effects": {
+    "age_c": {"direction": "increases risk", "size": "moderate local increase", "rank": 6},
+    "female": {"direction": "no clear effect", "size": "local signs disagree", "rank": 12},
+    "wfns45": {"direction": "increases risk", "size": "largest positive local effect", "rank": 1},
+    "fisher34": {"direction": "increases risk", "size": "moderate local increase", "rank": 5},
+    "ct_ivh": {"direction": "increases risk", "size": "moderate local increase", "rank": 3},
+    "ct_ich": {"direction": "increases risk", "size": "moderate local increase", "rank": 7},
+    "htn": {"direction": "increases risk", "size": "smaller local increase", "rank": 8},
+    "surgery": {"direction": "decreases risk", "size": "largest negative local effect", "rank": 2},
+    "urban": {"direction": "decreases risk", "size": "weak local association", "rank": 11},
+    "farmer": {"direction": "decreases risk", "size": "small local association", "rank": 10},
+    "l1": {"direction": "decreases risk", "size": "inverse locally, not globally", "rank": 3},
+    "l2": {"direction": "no clear effect", "size": "local signs disagree", "rank": 12},
+    "l3": {"direction": "no clear effect", "size": "local signs disagree", "rank": 12},
+    "l4": {"direction": "no clear effect", "size": "local signs disagree", "rank": 12},
+    "l5": {"direction": "no clear effect", "size": "local signs disagree", "rank": 12},
+    "l6": {"direction": "no clear effect", "size": "local signs disagree", "rank": 12},
+    "l7": {"direction": "no clear effect", "size": "local signs disagree", "rank": 12},
+    "l8": {"direction": "decreases risk", "size": "small negative local sensitivity", "rank": 9},
+    "l9": {"direction": "no clear effect", "size": "local signs disagree", "rank": 12},
+    "l10": {"direction": "no clear effect", "size": "local signs disagree", "rank": 12}
+  },
+  "unexpected": [
+    {
+      "inputs": ["farmer"],
+      "description": "All three have a negative local sensitivity to farmer coding. This is a model association, not evidence that farming protects patients.",
+      "where": "At the stated mathematical reference, with farmer coding centered at 0.5; no threshold is inferred."
+    },
+    {
+      "inputs": ["l1", "l8"],
+      "description": "Both laboratory inputs have negative local sensitivities in all three networks. Their anonymous identities prevent medical interpretation, and this does not establish whole-range monotonicity.",
+      "where": "Near laboratory values of 5, holding other inputs at the stated reference."
+    }
+  ],
+  "surrogate": {
+    "intercept": -2.110,
+    "terms": [
+      {"input": "age_c", "type": "linear", "coef": 0.818},
+      {"input": "wfns45", "type": "linear", "coef": 3.036},
+      {"input": "fisher34", "type": "linear", "coef": 0.846},
+      {"input": "ct_ivh", "type": "linear", "coef": 0.929},
+      {"input": "ct_ich", "type": "linear", "coef": 0.742},
+      {"input": "htn", "type": "linear", "coef": 0.506},
+      {"input": "surgery", "type": "linear", "coef": -2.689},
+      {"input": "urban", "type": "linear", "coef": -0.121},
+      {"input": "farmer", "type": "linear", "coef": -0.258},
+      {"input": "l1", "type": "linear", "coef": -0.0925},
+      {"input": "l8", "type": "linear", "coef": -0.0408}
+    ],
+    "interactions": []
+  },
+  "confidence_trained": 0.95
+}
+```

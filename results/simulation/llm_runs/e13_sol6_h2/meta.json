@@ -1,0 +1,8 @@
+{
+ "run": "e13_sol6_h2",
+ "experiment": "E13",
+ "condition": "weights",
+ "target": "e4_h2",
+ "model": "gpt-6-sol",
+ "prompt_from": "e4_w_h2_r1"
+}

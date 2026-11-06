@@ -1,0 +1,28 @@
+{
+ "model": "gpt-6-sol",
+ "effort": "max",
+ "instructions": "instructions_assume.md",
+ "tool_network": "e11_int_XXL.json",
+ "tool_blackbox": false,
+ "started": "2026-11-05 06:24:12",
+ "seconds": 456,
+ "exit": 0,
+ "attempts": 1,
+ "usage": {
+  "input_tokens": 330148,
+  "cached_input_tokens": 304000,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 21249,
+  "reasoning_output_tokens": 12106
+ },
+ "items": {
+  "mcp_tool_call": 15,
+  "agent_message": 1
+ },
+ "threads": [
+  "01a1a8a9-a67e-79c0-898d-0208fd5e4c5d"
+ ],
+ "tool_free": false,
+ "tool_calls": 15,
+ "only_calculator": true
+}

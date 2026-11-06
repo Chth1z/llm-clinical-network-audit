@@ -1,0 +1,611 @@
+{
+ "effects": {
+  "age_c": {
+   "direction": "increases risk",
+   "size": "large overall; locally reverses",
+   "rank": 2
+  },
+  "female": {
+   "direction": "no clear effect",
+   "size": "small; sign changes",
+   "rank": 9
+  },
+  "wfns45": {
+   "direction": "increases risk",
+   "size": "large; roughly +1.7 log-odds",
+   "rank": 3
+  },
+  "fisher34": {
+   "direction": "increases risk",
+   "size": "moderate; roughly +0.5 log-odds",
+   "rank": 6
+  },
+  "ct_ivh": {
+   "direction": "increases risk",
+   "size": "moderate; roughly +0.5 log-odds",
+   "rank": 5
+  },
+  "ct_ich": {
+   "direction": "increases risk",
+   "size": "modest; strongly context-dependent",
+   "rank": 7
+  },
+  "htn": {
+   "direction": "no clear effect",
+   "size": "small; weakly positive overall",
+   "rank": 8
+  },
+  "surgery": {
+   "direction": "decreases risk",
+   "size": "large; roughly -1.5 log-odds",
+   "rank": 4
+  },
+  "urban": {
+   "direction": "no clear effect",
+   "size": "small; weakly negative overall",
+   "rank": 11
+  },
+  "farmer": {
+   "direction": "no clear effect",
+   "size": "small; sign changes",
+   "rank": 10
+  },
+  "l7": {
+   "direction": "no clear effect",
+   "size": "large; nonmonotone, steep upper rise",
+   "rank": 1
+  }
+ },
+ "interactions": [
+  "The l7 turning point and upper rise depend on age and the binary inputs, rather than occurring at one universal cutoff.",
+  "Female and farmer effects can reverse as l7 changes.",
+  "The surgery-associated reduction tends to become larger with age in the broad-domain approximation.",
+  "Fisher 3-4 and IVH have a subadditive joint contribution on average.",
+  "The network also contains higher-order interactions that constant pairwise products cannot reproduce."
+ ],
+ "unexpected": [
+  {
+   "inputs": [
+    "l7"
+   ],
+   "description": "A low-to-middle decrease is followed by a strong high-end increase. At age 60 with all binary inputs zero, probabilities at l7=0,4,8,10 are approximately 0.171,0.079,0.274,0.682.",
+   "where": "For that profile, the trough is near l7=4.2 and the fifth hidden unit crosses its midpoint at l7=8.41; both locations are profile-dependent."
+  },
+  {
+   "inputs": [
+    "age_c",
+    "l7"
+   ],
+   "description": "Older age can decrease the prediction: mortality probability falls from approximately 0.171 to 0.146 when age increases from 60 to 70 in one valid input profile.",
+   "where": "age_c changes from 0 to 1, with l7=0 and every binary input zero."
+  },
+  {
+   "inputs": [
+    "female",
+    "l7"
+   ],
+   "description": "Female changes from prediction-lowering to prediction-raising as the laboratory value changes.",
+   "where": "At age_c=0 with all other binary inputs zero, the female log-odds contrast is approximately -0.32 at l7=0 but +0.18 at l7=5."
+  },
+  {
+   "inputs": [
+    "farmer",
+    "l7"
+   ],
+   "description": "Farmer changes from prediction-raising to prediction-lowering as the laboratory value changes.",
+   "where": "At age_c=0 with all other binary inputs zero, the farmer log-odds contrast is approximately +0.29 at l7=0 but -0.19 at l7=5."
+  }
+ ],
+ "surrogate": {
+  "intercept": -2.654,
+  "terms": [
+   {
+    "input": "age_c",
+    "type": "linear",
+    "coef": 0.392
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": 0.1438,
+    "knot": -2.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": 0.1048,
+    "knot": 0.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.0619,
+    "knot": 2.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.0811,
+    "knot": 3.0
+   },
+   {
+    "input": "female",
+    "type": "linear",
+    "coef": -0.0528
+   },
+   {
+    "input": "wfns45",
+    "type": "linear",
+    "coef": 1.9227
+   },
+   {
+    "input": "fisher34",
+    "type": "linear",
+    "coef": 0.6041
+   },
+   {
+    "input": "ct_ivh",
+    "type": "linear",
+    "coef": 0.4806
+   },
+   {
+    "input": "ct_ich",
+    "type": "linear",
+    "coef": 0.4643
+   },
+   {
+    "input": "htn",
+    "type": "linear",
+    "coef": -0.0467
+   },
+   {
+    "input": "surgery",
+    "type": "linear",
+    "coef": -1.6742
+   },
+   {
+    "input": "urban",
+    "type": "linear",
+    "coef": -0.1829
+   },
+   {
+    "input": "farmer",
+    "type": "linear",
+    "coef": -0.0424
+   },
+   {
+    "input": "l7",
+    "type": "linear",
+    "coef": -0.0171
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.007,
+    "knot": 1.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.016,
+    "knot": 2.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.0352,
+    "knot": 3.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.0739,
+    "knot": 4.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.1483,
+    "knot": 5.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.2531,
+    "knot": 6.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.2915,
+    "knot": 7.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.1152,
+    "knot": 8.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": -0.1646,
+    "knot": 9.0
+   }
+  ],
+  "interactions": [
+   {
+    "inputs": [
+     "age_c",
+     "female"
+    ],
+    "coef": -0.055
+   },
+   {
+    "inputs": [
+     "age_c",
+     "wfns45"
+    ],
+    "coef": 0.034
+   },
+   {
+    "inputs": [
+     "age_c",
+     "fisher34"
+    ],
+    "coef": 0.004
+   },
+   {
+    "inputs": [
+     "age_c",
+     "ct_ivh"
+    ],
+    "coef": 0.007
+   },
+   {
+    "inputs": [
+     "age_c",
+     "ct_ich"
+    ],
+    "coef": -0.003
+   },
+   {
+    "inputs": [
+     "age_c",
+     "htn"
+    ],
+    "coef": 0.008
+   },
+   {
+    "inputs": [
+     "age_c",
+     "surgery"
+    ],
+    "coef": -0.093
+   },
+   {
+    "inputs": [
+     "age_c",
+     "urban"
+    ],
+    "coef": 0.001
+   },
+   {
+    "inputs": [
+     "age_c",
+     "farmer"
+    ],
+    "coef": -0.009
+   },
+   {
+    "inputs": [
+     "l7",
+     "female"
+    ],
+    "coef": 0.009
+   },
+   {
+    "inputs": [
+     "l7",
+     "wfns45"
+    ],
+    "coef": -0.005
+   },
+   {
+    "inputs": [
+     "l7",
+     "fisher34"
+    ],
+    "coef": -0.007
+   },
+   {
+    "inputs": [
+     "l7",
+     "ct_ivh"
+    ],
+    "coef": 0.008
+   },
+   {
+    "inputs": [
+     "l7",
+     "ct_ich"
+    ],
+    "coef": -0.033
+   },
+   {
+    "inputs": [
+     "l7",
+     "htn"
+    ],
+    "coef": 0.034
+   },
+   {
+    "inputs": [
+     "l7",
+     "surgery"
+    ],
+    "coef": 0.005
+   },
+   {
+    "inputs": [
+     "l7",
+     "urban"
+    ],
+    "coef": 0.008
+   },
+   {
+    "inputs": [
+     "female",
+     "wfns45"
+    ],
+    "coef": -0.036
+   },
+   {
+    "inputs": [
+     "female",
+     "fisher34"
+    ],
+    "coef": -0.064
+   },
+   {
+    "inputs": [
+     "female",
+     "ct_ivh"
+    ],
+    "coef": 0.054
+   },
+   {
+    "inputs": [
+     "female",
+     "ct_ich"
+    ],
+    "coef": 0.019
+   },
+   {
+    "inputs": [
+     "female",
+     "htn"
+    ],
+    "coef": -0.026
+   },
+   {
+    "inputs": [
+     "female",
+     "surgery"
+    ],
+    "coef": 0.032
+   },
+   {
+    "inputs": [
+     "female",
+     "urban"
+    ],
+    "coef": 0.003
+   },
+   {
+    "inputs": [
+     "female",
+     "farmer"
+    ],
+    "coef": 0.08
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "fisher34"
+    ],
+    "coef": -0.028
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "ct_ivh"
+    ],
+    "coef": 0.013
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "ct_ich"
+    ],
+    "coef": -0.1
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "htn"
+    ],
+    "coef": 0.009
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "surgery"
+    ],
+    "coef": -0.041
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "urban"
+    ],
+    "coef": -0.05
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "farmer"
+    ],
+    "coef": -0.046
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "ct_ivh"
+    ],
+    "coef": -0.158
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "ct_ich"
+    ],
+    "coef": 0.032
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "htn"
+    ],
+    "coef": -0.058
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "surgery"
+    ],
+    "coef": -0.004
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "urban"
+    ],
+    "coef": 0.031
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "farmer"
+    ],
+    "coef": 0.106
+   },
+   {
+    "inputs": [
+     "ct_ivh",
+     "ct_ich"
+    ],
+    "coef": 0.003
+   },
+   {
+    "inputs": [
+     "ct_ivh",
+     "htn"
+    ],
+    "coef": 0.017
+   },
+   {
+    "inputs": [
+     "ct_ivh",
+     "surgery"
+    ],
+    "coef": 0.124
+   },
+   {
+    "inputs": [
+     "ct_ivh",
+     "urban"
+    ],
+    "coef": 0.042
+   },
+   {
+    "inputs": [
+     "ct_ivh",
+     "farmer"
+    ],
+    "coef": -0.054
+   },
+   {
+    "inputs": [
+     "ct_ich",
+     "htn"
+    ],
+    "coef": -0.049
+   },
+   {
+    "inputs": [
+     "ct_ich",
+     "surgery"
+    ],
+    "coef": 0.011
+   },
+   {
+    "inputs": [
+     "ct_ich",
+     "urban"
+    ],
+    "coef": 0.052
+   },
+   {
+    "inputs": [
+     "ct_ich",
+     "farmer"
+    ],
+    "coef": 0.019
+   },
+   {
+    "inputs": [
+     "htn",
+     "surgery"
+    ],
+    "coef": 0.074
+   },
+   {
+    "inputs": [
+     "htn",
+     "urban"
+    ],
+    "coef": 0.004
+   },
+   {
+    "inputs": [
+     "htn",
+     "farmer"
+    ],
+    "coef": 0.053
+   },
+   {
+    "inputs": [
+     "surgery",
+     "urban"
+    ],
+    "coef": 0.039
+   },
+   {
+    "inputs": [
+     "surgery",
+     "farmer"
+    ],
+    "coef": 0.039
+   },
+   {
+    "inputs": [
+     "urban",
+     "farmer"
+    ],
+    "coef": 0.001
+   }
+  ]
+ },
+ "confidence_trained": 0.85
+}

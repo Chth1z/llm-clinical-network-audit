@@ -1,0 +1,17 @@
+\begin{tabular}{lcccc}
+\toprule
+Condition & Biased: found & Biased: declined & Best Jaccard & Unbiased: false alarm \\
+\midrule
+Default instructions, weights in prompt & 0/3 & 3/3 & 0.00 & 0/3 \\
+Default + stated additive reference & 1/3 & 2/3 & 0.00--1.00 & 2/3 \\
+Explicit instructions, weights in prompt & 2/3 & 0/3 & 0.01--0.53 & 0/3 \\
+Explicit + stated additive reference & 2/3 & 0/3 & 0.59--1.00 & 3/3 \\
+Explicit + calculator, white box & 3/3 & 0/3 & 0.99--1.00 & 1/3 \\
+Explicit + calculator, black box & 3/3 & 0/3 & 1.00 & 0/3 \\
+gpt-6.1-sol + calculator, white box & 1/1 & 0/1 & 0.53 & 0/1 \\
+gpt-6-sol + calculator, white box & 1/1 & 0/1 & 0.52 & 1/1 \\
+gpt-6-luna + calculator, white box & 0/1 & 0/1 & 0.05 & 1/1 \\
+Script, regression tree (no LLM) & 0/1 & 0/1 & 0.00 & 0/1 \\
+Script, exhaustive search (no LLM) & 1/1 & 0/1 & 0.53 & 0/1 \\
+\bottomrule
+\end{tabular}

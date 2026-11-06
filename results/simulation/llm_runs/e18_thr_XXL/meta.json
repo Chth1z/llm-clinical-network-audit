@@ -1,0 +1,11 @@
+{
+ "run": "e18_thr_XXL",
+ "experiment": "E6",
+ "condition": "weights",
+ "target": "e11_thr_XXL",
+ "instructions": "instructions_assume.md",
+ "variant": "assume+calculator, black box",
+ "tool_network": "e11_thr_XXL.json",
+ "prompt_from": "e17_w_thr_XXL",
+ "tool_blackbox": true
+}

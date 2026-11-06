@@ -1,0 +1,196 @@
+{
+ "effects": {
+  "age_c": {
+   "direction": "increases risk",
+   "size": "moderate; tapers at older ages",
+   "rank": 3
+  },
+  "female": {
+   "direction": "decreases risk",
+   "size": "small",
+   "rank": 9
+  },
+  "wfns45": {
+   "direction": "increases risk",
+   "size": "very large",
+   "rank": 1
+  },
+  "fisher34": {
+   "direction": "increases risk",
+   "size": "moderate",
+   "rank": 4
+  },
+  "ct_ivh": {
+   "direction": "increases risk",
+   "size": "small-to-moderate",
+   "rank": 6
+  },
+  "ct_ich": {
+   "direction": "increases risk",
+   "size": "moderate",
+   "rank": 5
+  },
+  "htn": {
+   "direction": "increases risk",
+   "size": "very small",
+   "rank": 10
+  },
+  "surgery": {
+   "direction": "decreases risk",
+   "size": "very large",
+   "rank": 2
+  },
+  "urban": {
+   "direction": "decreases risk",
+   "size": "small",
+   "rank": 8
+  },
+  "farmer": {
+   "direction": "no clear effect",
+   "size": "near zero centrally",
+   "rank": 11
+  },
+  "l7": {
+   "direction": "no clear effect",
+   "size": "moderate, non-monotone",
+   "rank": 7
+  }
+ },
+ "interactions": [
+  "wfns45 × surgery: the surgery-associated decrease is weaker when wfns45=1.",
+  "age_c × surgery: the surgery-associated decrease becomes somewhat stronger with age.",
+  "age_c × ct_ich, age_c × fisher34, and age_c × farmer: smaller context-dependent shifts."
+ ],
+ "unexpected": [
+  {
+   "inputs": [
+    "l7"
+   ],
+   "description": "At the centered setting, log-odds fall as l7 approaches about 5, then rise above it; the relationship is U-shaped rather than monotone.",
+   "where": "The change in slope is around l7=5 on its 0–10 scale."
+  }
+ ],
+ "surrogate": {
+  "intercept": -2.622,
+  "terms": [
+   {
+    "input": "age_c",
+    "type": "linear",
+    "coef": 0.828
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.48,
+    "knot": 1.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.1,
+    "knot": 2.0
+   },
+   {
+    "input": "female",
+    "type": "linear",
+    "coef": -0.146
+   },
+   {
+    "input": "wfns45",
+    "type": "linear",
+    "coef": 2.198
+   },
+   {
+    "input": "fisher34",
+    "type": "linear",
+    "coef": 0.74
+   },
+   {
+    "input": "ct_ivh",
+    "type": "linear",
+    "coef": 0.446
+   },
+   {
+    "input": "ct_ich",
+    "type": "linear",
+    "coef": 0.617
+   },
+   {
+    "input": "htn",
+    "type": "linear",
+    "coef": 0.119
+   },
+   {
+    "input": "surgery",
+    "type": "linear",
+    "coef": -1.968
+   },
+   {
+    "input": "urban",
+    "type": "linear",
+    "coef": -0.158
+   },
+   {
+    "input": "farmer",
+    "type": "linear",
+    "coef": -0.019
+   },
+   {
+    "input": "l7",
+    "type": "linear",
+    "coef": -0.068
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.165,
+    "knot": 5.0
+   }
+  ],
+  "interactions": [
+   {
+    "inputs": [
+     "wfns45",
+     "surgery"
+    ],
+    "coef": 0.33
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "urban"
+    ],
+    "coef": -0.19
+   },
+   {
+    "inputs": [
+     "age_c",
+     "surgery"
+    ],
+    "coef": -0.17
+   },
+   {
+    "inputs": [
+     "age_c",
+     "farmer"
+    ],
+    "coef": -0.12
+   },
+   {
+    "inputs": [
+     "age_c",
+     "ct_ich"
+    ],
+    "coef": 0.14
+   },
+   {
+    "inputs": [
+     "age_c",
+     "fisher34"
+    ],
+    "coef": 0.09
+   }
+  ]
+ },
+ "confidence_trained": 0.15
+}

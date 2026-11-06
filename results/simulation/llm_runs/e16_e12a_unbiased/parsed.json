@@ -1,0 +1,53 @@
+{
+ "subgroups": [
+  {
+   "conditions": [
+    {
+     "input": "wfns45",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "l7",
+     "op": "<=",
+     "value": 0.5
+    }
+   ],
+   "logit_shift": 0.55,
+   "description": "Poor-grade patients with very low l7 receive an unexplained upward risk correction."
+  },
+  {
+   "conditions": [
+    {
+     "input": "ct_ich",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "l7",
+     "op": "<=",
+     "value": 0.5
+    }
+   ],
+   "logit_shift": 0.57,
+   "description": "Patients with intracerebral haemorrhage and very low l7 receive an unexplained upward risk correction."
+  },
+  {
+   "conditions": [
+    {
+     "input": "surgery",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "input": "l7",
+     "op": "<=",
+     "value": 0.5
+    }
+   ],
+   "logit_shift": 0.53,
+   "description": "Conservatively managed patients with very low l7 receive an unexplained upward risk correction."
+  }
+ ],
+ "confidence_trained": 0.97
+}

@@ -1,0 +1,7 @@
+{
+ "run": "e12b_repair_r1",
+ "experiment": "E12",
+ "condition": "repair_subgroup",
+ "target": "e8_biased",
+ "prompt_from": "e8b_repair_r1"
+}

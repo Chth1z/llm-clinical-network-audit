@@ -1,0 +1,6 @@
+{
+ "run": "e8a_biased_r1",
+ "experiment": "E8",
+ "condition": "audit",
+ "target": "e8_biased"
+}

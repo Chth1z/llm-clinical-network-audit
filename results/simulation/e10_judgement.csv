@@ -1,0 +1,3 @@
+run,found_by_E4_rule,network_strength,astra_strength,astra_strength_on_original_mean,unchanged,r2,confidence_trained
+e10_h1_equiv,True,2.913273122119999,2.4417999999999997,2.3458999999999994,True,0.9715922090700263,0.97
+e10_h2_equiv,True,1.7129175911114531,1.7102579828895386,1.7159496578952562,True,0.9593074210738926,0.8

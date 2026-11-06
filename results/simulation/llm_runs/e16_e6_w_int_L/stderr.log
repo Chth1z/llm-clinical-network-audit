@@ -1,0 +1,3 @@
+2026-11-04T18:10:14.668365Z ERROR codex_core::tools::router: error=code-mode host is disabled
+2026-11-04T18:10:18.401711Z ERROR codex_core::tools::router: error=code-mode host is disabled
+2026-11-04T18:41:51.942944Z ERROR codex_models_manager::manager: failed to refresh available models: request timed out

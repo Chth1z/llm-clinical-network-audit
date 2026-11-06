@@ -1,0 +1,659 @@
+{
+ "effects": {
+  "age_c": {
+   "direction": "no clear effect",
+   "size": "large, strongly nonmonotonic",
+   "rank": 3
+  },
+  "female": {
+   "direction": "no clear effect",
+   "size": "small average; locally substantial",
+   "rank": 11
+  },
+  "wfns45": {
+   "direction": "increases risk",
+   "size": "large",
+   "rank": 1
+  },
+  "fisher34": {
+   "direction": "increases risk",
+   "size": "moderate; sometimes reverses",
+   "rank": 7
+  },
+  "ct_ivh": {
+   "direction": "increases risk",
+   "size": "moderate; profile dependent",
+   "rank": 5
+  },
+  "ct_ich": {
+   "direction": "increases risk",
+   "size": "small to moderate; occasionally reverses",
+   "rank": 8
+  },
+  "htn": {
+   "direction": "increases risk",
+   "size": "moderate; profile dependent",
+   "rank": 6
+  },
+  "surgery": {
+   "direction": "decreases risk",
+   "size": "large",
+   "rank": 2
+  },
+  "urban": {
+   "direction": "no clear effect",
+   "size": "small average; sign changing",
+   "rank": 9
+  },
+  "farmer": {
+   "direction": "no clear effect",
+   "size": "small average; sign changing",
+   "rank": 10
+  },
+  "l7": {
+   "direction": "no clear effect",
+   "size": "moderate, nonlinear and conditional",
+   "rank": 4
+  }
+ },
+ "interactions": [
+  "Each additional l7 unit shifts the dominant age transition approximately 0.294 years later.",
+  "Female, wfns45, fisher34 and ct_ivh shift that age transition earlier; ct_ich and urban shift it later.",
+  "Age and CT findings move two opposing laboratory-related transitions, so the l7 effect can change sign.",
+  "WFNS and surgery are nonadditive: their average log-odds product interaction is positive.",
+  "Fisher, IVH and hypertension effects vary with WFNS, treatment, age and l7."
+ ],
+ "unexpected": [
+  {
+   "inputs": [
+    "age_c"
+   ],
+   "description": "Increasing age often lowers predicted risk through younger and middle adulthood, followed by a sharp upward transition. With all binary inputs 0 and l7=5, predicted risks at ages 20, 40, 60 and 70 are approximately 0.105, 0.057, 0.030 and 0.096.",
+   "where": "The dominant age unit's transition centre, with binary inputs 0, is age_c=0.6287+0.02939*l7, equivalent to age 66.29+0.294*l7 years. Binary covariates shift this centre."
+  },
+  {
+   "inputs": [
+    "l7"
+   ],
+   "description": "The laboratory relationship can have both a local minimum and a local maximum rather than a consistent direction.",
+   "where": "At age_c=0 with all binary inputs 0, risk decreases until l7 approximately 1.2, increases until approximately 5.8, then decreases through 10."
+  },
+  {
+   "inputs": [
+    "fisher34"
+   ],
+   "description": "Higher Fisher grade can lower predicted mortality. In the specified example, changing fisher34 from 0 to 1 lowers probability from approximately 0.317 to 0.237.",
+   "where": "age_c=1, l7=0, with all other binary inputs 0."
+  },
+  {
+   "inputs": [
+    "female",
+    "ct_ich"
+   ],
+   "description": "Near the sharp age transition, female can increase risk and ct_ich can decrease it; neither has a universally fixed direction.",
+   "where": "For example, age_c approximately 0.75, l7=5, with the other binary inputs 0."
+  }
+ ],
+ "surrogate": {
+  "intercept": -3.3522,
+  "terms": [
+   {
+    "input": "age_c",
+    "type": "linear",
+    "coef": -0.25953
+   },
+   {
+    "input": "female",
+    "type": "linear",
+    "coef": -0.1832
+   },
+   {
+    "input": "wfns45",
+    "type": "linear",
+    "coef": 1.5585
+   },
+   {
+    "input": "fisher34",
+    "type": "linear",
+    "coef": 0.49605
+   },
+   {
+    "input": "ct_ivh",
+    "type": "linear",
+    "coef": 0.3724
+   },
+   {
+    "input": "ct_ich",
+    "type": "linear",
+    "coef": 0.2711
+   },
+   {
+    "input": "htn",
+    "type": "linear",
+    "coef": 0.28675
+   },
+   {
+    "input": "surgery",
+    "type": "linear",
+    "coef": -1.8172
+   },
+   {
+    "input": "urban",
+    "type": "linear",
+    "coef": 0.29655
+   },
+   {
+    "input": "farmer",
+    "type": "linear",
+    "coef": -0.0142
+   },
+   {
+    "input": "l7",
+    "type": "linear",
+    "coef": -0.01982
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.01769,
+    "knot": -3.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.02881,
+    "knot": -2.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.03352,
+    "knot": -1.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": 0.04622,
+    "knot": -0.5
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": 0.459,
+    "knot": 0.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": 1.29329,
+    "knot": 0.25
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": 1.60434,
+    "knot": 0.5
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.52624,
+    "knot": 0.75
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -1.5451,
+    "knot": 1.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.67297,
+    "knot": 1.25
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.07996,
+    "knot": 1.5
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": 0.0653,
+    "knot": 2.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.02105,
+    "knot": 2.5
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.13121,
+    "knot": 3.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.19308,
+    "knot": 3.5
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.01574,
+    "knot": 2.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": -0.01335,
+    "knot": 4.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": -0.02708,
+    "knot": 6.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": -0.00845,
+    "knot": 8.0
+   }
+  ],
+  "interactions": [
+   {
+    "inputs": [
+     "age_c",
+     "l7"
+    ],
+    "coef": -0.0114
+   },
+   {
+    "inputs": [
+     "age_c",
+     "female"
+    ],
+    "coef": -0.0204
+   },
+   {
+    "inputs": [
+     "age_c",
+     "wfns45"
+    ],
+    "coef": 0.023
+   },
+   {
+    "inputs": [
+     "age_c",
+     "fisher34"
+    ],
+    "coef": 0.0261
+   },
+   {
+    "inputs": [
+     "age_c",
+     "ct_ivh"
+    ],
+    "coef": 0.0378
+   },
+   {
+    "inputs": [
+     "age_c",
+     "ct_ich"
+    ],
+    "coef": 0.0162
+   },
+   {
+    "inputs": [
+     "age_c",
+     "htn"
+    ],
+    "coef": 0.0215
+   },
+   {
+    "inputs": [
+     "age_c",
+     "surgery"
+    ],
+    "coef": -0.0204
+   },
+   {
+    "inputs": [
+     "age_c",
+     "urban"
+    ],
+    "coef": -0.0199
+   },
+   {
+    "inputs": [
+     "age_c",
+     "farmer"
+    ],
+    "coef": -0.0214
+   },
+   {
+    "inputs": [
+     "l7",
+     "female"
+    ],
+    "coef": 0.0149
+   },
+   {
+    "inputs": [
+     "l7",
+     "wfns45"
+    ],
+    "coef": 0.0317
+   },
+   {
+    "inputs": [
+     "l7",
+     "fisher34"
+    ],
+    "coef": -0.0115
+   },
+   {
+    "inputs": [
+     "l7",
+     "ct_ivh"
+    ],
+    "coef": 0.0151
+   },
+   {
+    "inputs": [
+     "l7",
+     "ct_ich"
+    ],
+    "coef": -0.0005
+   },
+   {
+    "inputs": [
+     "l7",
+     "htn"
+    ],
+    "coef": 0.0165
+   },
+   {
+    "inputs": [
+     "l7",
+     "surgery"
+    ],
+    "coef": -0.0139
+   },
+   {
+    "inputs": [
+     "l7",
+     "urban"
+    ],
+    "coef": -0.0189
+   },
+   {
+    "inputs": [
+     "l7",
+     "farmer"
+    ],
+    "coef": -0.0019
+   },
+   {
+    "inputs": [
+     "female",
+     "wfns45"
+    ],
+    "coef": 0.033
+   },
+   {
+    "inputs": [
+     "female",
+     "fisher34"
+    ],
+    "coef": 0.021
+   },
+   {
+    "inputs": [
+     "female",
+     "ct_ivh"
+    ],
+    "coef": 0.018
+   },
+   {
+    "inputs": [
+     "female",
+     "ct_ich"
+    ],
+    "coef": 0.01
+   },
+   {
+    "inputs": [
+     "female",
+     "htn"
+    ],
+    "coef": 0.083
+   },
+   {
+    "inputs": [
+     "female",
+     "surgery"
+    ],
+    "coef": 0.007
+   },
+   {
+    "inputs": [
+     "female",
+     "urban"
+    ],
+    "coef": -0.036
+   },
+   {
+    "inputs": [
+     "female",
+     "farmer"
+    ],
+    "coef": 0.055
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "fisher34"
+    ],
+    "coef": -0.181
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "ct_ivh"
+    ],
+    "coef": -0.161
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "ct_ich"
+    ],
+    "coef": 0.031
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "htn"
+    ],
+    "coef": -0.177
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "surgery"
+    ],
+    "coef": 0.333
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "urban"
+    ],
+    "coef": 0.047
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "farmer"
+    ],
+    "coef": 0.084
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "ct_ivh"
+    ],
+    "coef": -0.029
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "ct_ich"
+    ],
+    "coef": -0.01
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "htn"
+    ],
+    "coef": -0.043
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "surgery"
+    ],
+    "coef": 0.131
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "urban"
+    ],
+    "coef": -0.022
+   },
+   {
+    "inputs": [
+     "fisher34",
+     "farmer"
+    ],
+    "coef": -0.004
+   },
+   {
+    "inputs": [
+     "ct_ivh",
+     "ct_ich"
+    ],
+    "coef": 0.019
+   },
+   {
+    "inputs": [
+     "ct_ivh",
+     "htn"
+    ],
+    "coef": 0.001
+   },
+   {
+    "inputs": [
+     "ct_ivh",
+     "surgery"
+    ],
+    "coef": 0.099
+   },
+   {
+    "inputs": [
+     "ct_ivh",
+     "urban"
+    ],
+    "coef": -0.013
+   },
+   {
+    "inputs": [
+     "ct_ivh",
+     "farmer"
+    ],
+    "coef": 0.038
+   },
+   {
+    "inputs": [
+     "ct_ich",
+     "htn"
+    ],
+    "coef": 0.022
+   },
+   {
+    "inputs": [
+     "ct_ich",
+     "surgery"
+    ],
+    "coef": -0.04
+   },
+   {
+    "inputs": [
+     "ct_ich",
+     "urban"
+    ],
+    "coef": -0.014
+   },
+   {
+    "inputs": [
+     "ct_ich",
+     "farmer"
+    ],
+    "coef": 0.015
+   },
+   {
+    "inputs": [
+     "htn",
+     "surgery"
+    ],
+    "coef": 0.162
+   },
+   {
+    "inputs": [
+     "htn",
+     "urban"
+    ],
+    "coef": -0.08
+   },
+   {
+    "inputs": [
+     "htn",
+     "farmer"
+    ],
+    "coef": 0.087
+   },
+   {
+    "inputs": [
+     "surgery",
+     "urban"
+    ],
+    "coef": -0.068
+   },
+   {
+    "inputs": [
+     "surgery",
+     "farmer"
+    ],
+    "coef": -0.031
+   },
+   {
+    "inputs": [
+     "urban",
+     "farmer"
+    ],
+    "coef": -0.056
+   }
+  ]
+ },
+ "confidence_trained": 0.95
+}

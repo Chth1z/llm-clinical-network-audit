@@ -1,0 +1,8 @@
+{
+ "run": "e25_e12a_unbiased_x1",
+ "experiment": "E12",
+ "condition": "audit",
+ "target": "e8_unbiased",
+ "prompt_from": "e12a_unbiased",
+ "replicate_of": "e12a_unbiased"
+}

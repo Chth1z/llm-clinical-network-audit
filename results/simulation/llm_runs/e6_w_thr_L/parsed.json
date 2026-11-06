@@ -1,0 +1,282 @@
+{
+ "effects": {
+  "age_c": {
+   "direction": "increases risk",
+   "size": "approximately 0.35 log-odds/decade locally",
+   "rank": 4
+  },
+  "female": {
+   "direction": "no clear effect",
+   "size": "very small locally",
+   "rank": 20
+  },
+  "wfns45": {
+   "direction": "increases risk",
+   "size": "large positive local effect",
+   "rank": 2
+  },
+  "fisher34": {
+   "direction": "increases risk",
+   "size": "moderate positive local effect",
+   "rank": 9
+  },
+  "ct_ivh": {
+   "direction": "increases risk",
+   "size": "moderate positive local effect",
+   "rank": 7
+  },
+  "ct_ich": {
+   "direction": "increases risk",
+   "size": "moderate positive local effect",
+   "rank": 10
+  },
+  "htn": {
+   "direction": "increases risk",
+   "size": "small positive local effect",
+   "rank": 16
+  },
+  "surgery": {
+   "direction": "decreases risk",
+   "size": "large negative local association",
+   "rank": 3
+  },
+  "urban": {
+   "direction": "decreases risk",
+   "size": "small negative local effect",
+   "rank": 14
+  },
+  "farmer": {
+   "direction": "decreases risk",
+   "size": "small negative local effect",
+   "rank": 15
+  },
+  "l1": {
+   "direction": "no clear effect",
+   "size": "locally negative; globally uncertain",
+   "rank": 8
+  },
+  "l2": {
+   "direction": "no clear effect",
+   "size": "locally negative; globally uncertain",
+   "rank": 5
+  },
+  "l3": {
+   "direction": "no clear effect",
+   "size": "large, nonmonotone U-shaped response",
+   "rank": 1
+  },
+  "l4": {
+   "direction": "no clear effect",
+   "size": "small, locally negative",
+   "rank": 17
+  },
+  "l5": {
+   "direction": "no clear effect",
+   "size": "small, locally negative",
+   "rank": 13
+  },
+  "l6": {
+   "direction": "no clear effect",
+   "size": "small, locally negative",
+   "rank": 12
+  },
+  "l7": {
+   "direction": "no clear effect",
+   "size": "small, locally negative",
+   "rank": 18
+  },
+  "l8": {
+   "direction": "no clear effect",
+   "size": "locally negative; globally uncertain",
+   "rank": 6
+  },
+  "l9": {
+   "direction": "no clear effect",
+   "size": "very small locally",
+   "rank": 19
+  },
+  "l10": {
+   "direction": "no clear effect",
+   "size": "small, locally negative",
+   "rank": 11
+  }
+ },
+ "unexpected": [
+  {
+   "inputs": [
+    "l3"
+   ],
+   "description": "A pronounced U-shaped response: increasing l3 initially lowers prediction, but further increases raise it strongly. A single signed coefficient misses this relationship.",
+   "where": "At the reference profile, the minimum is approximately l3 2–3; the strong rising portion occurs roughly from 4 through 9. These are approximate transitions, not hard network thresholds."
+  },
+  {
+   "inputs": [
+    "urban",
+    "farmer"
+   ],
+   "description": "Both variables have negative local log-odds coefficients, approximately -0.29 and -0.28 respectively; farmer is not assigned the opposite direction to urban.",
+   "where": "Around age_c 0, laboratories 5, and binary inputs 0.5; global consistency has not been established."
+  }
+ ],
+ "surrogate": {
+  "intercept": 1.725,
+  "terms": [
+   {
+    "input": "age_c",
+    "type": "linear",
+    "coef": 0.35
+   },
+   {
+    "input": "female",
+    "type": "linear",
+    "coef": -0.03
+   },
+   {
+    "input": "wfns45",
+    "type": "linear",
+    "coef": 2.44
+   },
+   {
+    "input": "fisher34",
+    "type": "linear",
+    "coef": 0.51
+   },
+   {
+    "input": "ct_ivh",
+    "type": "linear",
+    "coef": 0.73
+   },
+   {
+    "input": "ct_ich",
+    "type": "linear",
+    "coef": 0.4
+   },
+   {
+    "input": "htn",
+    "type": "linear",
+    "coef": 0.26
+   },
+   {
+    "input": "surgery",
+    "type": "linear",
+    "coef": -2.03
+   },
+   {
+    "input": "urban",
+    "type": "linear",
+    "coef": -0.29
+   },
+   {
+    "input": "farmer",
+    "type": "linear",
+    "coef": -0.28
+   },
+   {
+    "input": "l1",
+    "type": "linear",
+    "coef": -0.1
+   },
+   {
+    "input": "l2",
+    "type": "linear",
+    "coef": -0.15
+   },
+   {
+    "input": "l3",
+    "type": "linear",
+    "coef": -0.497
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": 0.214,
+    "knot": 1.0
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": 0.251,
+    "knot": 2.0
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": 0.289,
+    "knot": 3.0
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": 0.326,
+    "knot": 4.0
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": 0.268,
+    "knot": 5.0
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": 0.082,
+    "knot": 6.0
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": -0.072,
+    "knot": 7.0
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": -0.227,
+    "knot": 8.0
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": -0.381,
+    "knot": 9.0
+   },
+   {
+    "input": "l4",
+    "type": "linear",
+    "coef": -0.04
+   },
+   {
+    "input": "l5",
+    "type": "linear",
+    "coef": -0.055
+   },
+   {
+    "input": "l6",
+    "type": "linear",
+    "coef": -0.063
+   },
+   {
+    "input": "l7",
+    "type": "linear",
+    "coef": -0.037
+   },
+   {
+    "input": "l8",
+    "type": "linear",
+    "coef": -0.142
+   },
+   {
+    "input": "l9",
+    "type": "linear",
+    "coef": -0.016
+   },
+   {
+    "input": "l10",
+    "type": "linear",
+    "coef": -0.069
+   }
+  ],
+  "interactions": []
+ },
+ "confidence_trained": 0.98
+}

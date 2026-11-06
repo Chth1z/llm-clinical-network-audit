@@ -1,0 +1,4 @@
+2026-11-05T00:53:03.545383Z ERROR codex_core::tools::router: error=code-mode host is disabled
+2026-11-05T00:53:08.928320Z ERROR codex_core::tools::router: error=code-mode host is disabled
+2026-11-05T01:01:45.224741Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown
+2026-11-05T01:31:54.336205Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown

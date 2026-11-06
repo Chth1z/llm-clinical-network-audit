@@ -1,0 +1,8 @@
+{
+ "run": "e13_luna6_h3",
+ "experiment": "E13",
+ "condition": "weights",
+ "target": "e4_h3",
+ "model": "gpt-6-luna",
+ "prompt_from": "e4_w_h3_r1"
+}

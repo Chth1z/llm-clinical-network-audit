@@ -1,0 +1,17 @@
+\begin{tabular}{lcccccc}
+\toprule
+Condition & Runs & Declined & Invalid & Change in subgroup & Mean $|$change$|$ elsewhere & Bias after \\
+\midrule
+E8 repair, default (subgroup not given) & 3 & 2 & 0 & -- & 0.00 & $-$1.61 to $-$1.60 \\
+E8 repair, explicit (subgroup not given) & 3 & 0 & 0 & -- & 0.14 & $-$1.44 \\
+Subgroup given, default & 3 & 3 & 0 & 0.00 & 0.00 & $-$1.60 \\
+Subgroup given, explicit + tolerance & 3 & 0 & 0 & 1.24--1.40 & 0.07--0.09 & $-$0.37 to $-$0.20 \\
++1.6 exact, default & 3 & 3 & 0 & 0.00 & 0.00 & $-$1.60 \\
++1.6 exact, explicit & 3 & 0 & 0 & 0.80 & 0.80 & $-$0.81 \\
++1.6 exact, explicit + tolerance & 3 & 0 & 2 & 0.00--2.00 & 0.00--0.70 & $-$1.60 to 0.39 \\
++1.6 exact, explicit + tolerance + calculator & 3 & 0 & 0 & 1.48--1.49 & 0.20--0.21 & $-$0.12 to $-$0.11 \\
+\midrule
+Script: gradient fine-tuning (207/209 parameters) & 1 & 0 & 0 & 1.20 & 0.10 & $-$0.41 \\
+Script: scripted gate + least squares (29/209 parameters) & 1 & 0 & 0 & 1.51 & 0.13 & $-$0.10 \\
+\bottomrule
+\end{tabular}

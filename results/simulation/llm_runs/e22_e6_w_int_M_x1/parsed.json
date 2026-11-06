@@ -1,0 +1,436 @@
+{
+ "effects": {
+  "age_c": {
+   "direction": "increases risk",
+   "size": "moderate per decade",
+   "rank": 3
+  },
+  "female": {
+   "direction": "no clear effect",
+   "size": "very weak average effect",
+   "rank": 20
+  },
+  "wfns45": {
+   "direction": "increases risk",
+   "size": "very large",
+   "rank": 1
+  },
+  "fisher34": {
+   "direction": "increases risk",
+   "size": "moderate",
+   "rank": 8
+  },
+  "ct_ivh": {
+   "direction": "increases risk",
+   "size": "moderate",
+   "rank": 5
+  },
+  "ct_ich": {
+   "direction": "increases risk",
+   "size": "moderate",
+   "rank": 7
+  },
+  "htn": {
+   "direction": "increases risk",
+   "size": "small",
+   "rank": 9
+  },
+  "surgery": {
+   "direction": "decreases risk",
+   "size": "very large association",
+   "rank": 2
+  },
+  "urban": {
+   "direction": "decreases risk",
+   "size": "small average effect",
+   "rank": 10
+  },
+  "farmer": {
+   "direction": "no clear effect",
+   "size": "very weak negative tendency",
+   "rank": 18
+  },
+  "l1": {
+   "direction": "no clear effect",
+   "size": "weak and nonlinear",
+   "rank": 19
+  },
+  "l2": {
+   "direction": "no clear effect",
+   "size": "weak and nonlinear",
+   "rank": 14
+  },
+  "l3": {
+   "direction": "no clear effect",
+   "size": "weak and nonlinear",
+   "rank": 13
+  },
+  "l4": {
+   "direction": "decreases risk",
+   "size": "weak average tendency",
+   "rank": 11
+  },
+  "l5": {
+   "direction": "increases risk",
+   "size": "moderate, background dependent",
+   "rank": 6
+  },
+  "l6": {
+   "direction": "no clear effect",
+   "size": "weak and nonlinear",
+   "rank": 16
+  },
+  "l7": {
+   "direction": "no clear effect",
+   "size": "weak and nonlinear",
+   "rank": 17
+  },
+  "l8": {
+   "direction": "increases risk",
+   "size": "largest laboratory trend",
+   "rank": 4
+  },
+  "l9": {
+   "direction": "no clear effect",
+   "size": "weak and interacting",
+   "rank": 15
+  },
+  "l10": {
+   "direction": "no clear effect",
+   "size": "weak and nonlinear",
+   "rank": 12
+  }
+ },
+ "unexpected": [
+  {
+   "inputs": [
+    "l5",
+    "l8"
+   ],
+   "description": "These laboratories jointly control an oblique nonlinear transition. One hidden unit decreases as their weighted sum increases; other pathways oppose or reinforce this, so its transition is not itself a mortality-risk cutoff.",
+   "where": "At age_c=0, all binary inputs=0 and other laboratories=5, first-layer unit 18 crosses zero when 0.3521*l5 + 0.405*l8 = 1.32427. Changing other inputs moves this boundary."
+  },
+  {
+   "inputs": [
+    "l1",
+    "l2",
+    "l3",
+    "l6",
+    "l7",
+    "l9",
+    "l10"
+   ],
+   "description": "Small average linear effects do not imply that these inputs can be removed: they participate in nonlinear laboratory combinations and can modify the effects of other inputs.",
+   "where": "Across the supplied 0–10 ranges; transitions depend on the other inputs rather than a universal single-variable threshold."
+  }
+ ],
+ "surrogate": {
+  "intercept": -2.79144,
+  "terms": [
+   {
+    "input": "age_c",
+    "type": "linear",
+    "coef": 0.36196
+   },
+   {
+    "input": "female",
+    "type": "linear",
+    "coef": -0.00326
+   },
+   {
+    "input": "wfns45",
+    "type": "linear",
+    "coef": 1.49751
+   },
+   {
+    "input": "fisher34",
+    "type": "linear",
+    "coef": 0.30368
+   },
+   {
+    "input": "ct_ivh",
+    "type": "linear",
+    "coef": 0.45235
+   },
+   {
+    "input": "ct_ich",
+    "type": "linear",
+    "coef": 0.35283
+   },
+   {
+    "input": "htn",
+    "type": "linear",
+    "coef": 0.21924
+   },
+   {
+    "input": "surgery",
+    "type": "linear",
+    "coef": -1.43577
+   },
+   {
+    "input": "urban",
+    "type": "linear",
+    "coef": -0.15574
+   },
+   {
+    "input": "farmer",
+    "type": "linear",
+    "coef": -0.03932
+   },
+   {
+    "input": "l1",
+    "type": "linear",
+    "coef": 0.00747
+   },
+   {
+    "input": "l1",
+    "type": "hinge",
+    "coef": -0.0113,
+    "knot": 2.5
+   },
+   {
+    "input": "l1",
+    "type": "hinge",
+    "coef": -0.0113,
+    "knot": 5.0
+   },
+   {
+    "input": "l1",
+    "type": "hinge",
+    "coef": -0.0113,
+    "knot": 7.5
+   },
+   {
+    "input": "l2",
+    "type": "linear",
+    "coef": 0.03136
+   },
+   {
+    "input": "l2",
+    "type": "hinge",
+    "coef": -0.02147,
+    "knot": 2.5
+   },
+   {
+    "input": "l2",
+    "type": "hinge",
+    "coef": -0.02147,
+    "knot": 5.0
+   },
+   {
+    "input": "l2",
+    "type": "hinge",
+    "coef": -0.02147,
+    "knot": 7.5
+   },
+   {
+    "input": "l3",
+    "type": "linear",
+    "coef": 0.02902
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": -0.02563,
+    "knot": 2.5
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": -0.02563,
+    "knot": 5.0
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": -0.02563,
+    "knot": 7.5
+   },
+   {
+    "input": "l4",
+    "type": "linear",
+    "coef": 0.00619
+   },
+   {
+    "input": "l4",
+    "type": "hinge",
+    "coef": -0.02118,
+    "knot": 2.5
+   },
+   {
+    "input": "l4",
+    "type": "hinge",
+    "coef": -0.02118,
+    "knot": 5.0
+   },
+   {
+    "input": "l4",
+    "type": "hinge",
+    "coef": -0.02118,
+    "knot": 7.5
+   },
+   {
+    "input": "l5",
+    "type": "linear",
+    "coef": 0.04172
+   },
+   {
+    "input": "l5",
+    "type": "hinge",
+    "coef": -0.01352,
+    "knot": 2.5
+   },
+   {
+    "input": "l5",
+    "type": "hinge",
+    "coef": -0.01352,
+    "knot": 5.0
+   },
+   {
+    "input": "l5",
+    "type": "hinge",
+    "coef": -0.01352,
+    "knot": 7.5
+   },
+   {
+    "input": "l6",
+    "type": "linear",
+    "coef": 0.02427
+   },
+   {
+    "input": "l6",
+    "type": "hinge",
+    "coef": -0.01949,
+    "knot": 2.5
+   },
+   {
+    "input": "l6",
+    "type": "hinge",
+    "coef": -0.01949,
+    "knot": 5.0
+   },
+   {
+    "input": "l6",
+    "type": "hinge",
+    "coef": -0.01949,
+    "knot": 7.5
+   },
+   {
+    "input": "l7",
+    "type": "linear",
+    "coef": 0.01516
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": -0.01853,
+    "knot": 2.5
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": -0.01853,
+    "knot": 5.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": -0.01853,
+    "knot": 7.5
+   },
+   {
+    "input": "l8",
+    "type": "linear",
+    "coef": 0.11211
+   },
+   {
+    "input": "l8",
+    "type": "hinge",
+    "coef": -0.02174,
+    "knot": 2.5
+   },
+   {
+    "input": "l8",
+    "type": "hinge",
+    "coef": -0.02174,
+    "knot": 5.0
+   },
+   {
+    "input": "l8",
+    "type": "hinge",
+    "coef": -0.02174,
+    "knot": 7.5
+   },
+   {
+    "input": "l9",
+    "type": "linear",
+    "coef": 0.02255
+   },
+   {
+    "input": "l9",
+    "type": "hinge",
+    "coef": -0.02004,
+    "knot": 2.5
+   },
+   {
+    "input": "l9",
+    "type": "hinge",
+    "coef": -0.02004,
+    "knot": 5.0
+   },
+   {
+    "input": "l9",
+    "type": "hinge",
+    "coef": -0.02004,
+    "knot": 7.5
+   },
+   {
+    "input": "l10",
+    "type": "linear",
+    "coef": 0.04689
+   },
+   {
+    "input": "l10",
+    "type": "hinge",
+    "coef": -0.0266,
+    "knot": 2.5
+   },
+   {
+    "input": "l10",
+    "type": "hinge",
+    "coef": -0.0266,
+    "knot": 5.0
+   },
+   {
+    "input": "l10",
+    "type": "hinge",
+    "coef": -0.0266,
+    "knot": 7.5
+   }
+  ],
+  "interactions": [
+   {
+    "inputs": [
+     "l5",
+     "l8"
+    ],
+    "coef": 0.01136
+   },
+   {
+    "inputs": [
+     "l8",
+     "l9"
+    ],
+    "coef": -0.0038
+   },
+   {
+    "inputs": [
+     "l7",
+     "l9"
+    ],
+    "coef": 0.00278
+   }
+  ]
+ },
+ "confidence_trained": 0.98
+}

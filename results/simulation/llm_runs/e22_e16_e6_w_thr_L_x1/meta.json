@@ -1,0 +1,10 @@
+{
+ "run": "e22_e16_e6_w_thr_L_x1",
+ "experiment": "E6",
+ "condition": "weights",
+ "target": "e6_thr_L",
+ "instructions": "instructions_assume.md",
+ "variant": "assume",
+ "prompt_from": "e16_e6_w_thr_L",
+ "replicate_of": "e16_e6_w_thr_L"
+}

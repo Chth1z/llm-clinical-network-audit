@@ -1,0 +1,41 @@
+The architecture alone cannot identify the learned relationships. A reasonable **clinical-prior guess** is that neurological severity and treatment status dominate, followed by age and CT findings.
+
+Below is an **unfitted, uncalibrated surrogate**, not a recovered network; its agreement with the network cannot be established. Zero coefficients mean insufficient information, especially for unidentified `l7`. Empty lists mean no relationships could be established. Also, `surgery` occurs during admission: its association may reflect treatment selection and survival bias, not a causal treatment effect.
+
+```json
+{
+  "effects": {
+    "age_c": {"direction": "increases risk", "size": "moderate per decade; assumed", "rank": 3},
+    "female": {"direction": "no clear effect", "size": "unknown; omitted", "rank": 8},
+    "wfns45": {"direction": "increases risk", "size": "large; assumed", "rank": 1},
+    "fisher34": {"direction": "increases risk", "size": "modest conditional effect; assumed", "rank": 6},
+    "ct_ivh": {"direction": "increases risk", "size": "moderate; assumed", "rank": 5},
+    "ct_ich": {"direction": "increases risk", "size": "moderate; assumed", "rank": 4},
+    "htn": {"direction": "increases risk", "size": "small conditional effect; assumed", "rank": 7},
+    "surgery": {"direction": "decreases risk", "size": "large association; assumed", "rank": 2},
+    "urban": {"direction": "no clear effect", "size": "unknown; omitted", "rank": 8},
+    "farmer": {"direction": "no clear effect", "size": "unknown; omitted", "rank": 8},
+    "l7": {"direction": "no clear effect", "size": "unidentified laboratory measurement", "rank": 8}
+  },
+  "interactions": [],
+  "unexpected": [],
+  "surrogate": {
+    "intercept": -2.0,
+    "terms": [
+      {"input": "age_c", "type": "linear", "coef": 0.45},
+      {"input": "female", "type": "linear", "coef": 0.0},
+      {"input": "wfns45", "type": "linear", "coef": 2.0},
+      {"input": "fisher34", "type": "linear", "coef": 0.4},
+      {"input": "ct_ivh", "type": "linear", "coef": 0.5},
+      {"input": "ct_ich", "type": "linear", "coef": 0.6},
+      {"input": "htn", "type": "linear", "coef": 0.1},
+      {"input": "surgery", "type": "linear", "coef": -1.5},
+      {"input": "urban", "type": "linear", "coef": 0.0},
+      {"input": "farmer", "type": "linear", "coef": 0.0},
+      {"input": "l7", "type": "linear", "coef": 0.0}
+    ],
+    "interactions": []
+  },
+  "confidence_trained": null
+}
+```

@@ -1,0 +1,162 @@
+**Reference:** independent inputs, ages 18–90, equally weighted binary values, and laboratories uniformly spanning 0–10.
+
+The strongest coherent signal through the weights is **older age, poor WFNS grade, and absence of aneurysm treatment**. IVH and Fisher grade contribute less; hypertension and ICH less again. Individual laboratory weights look substantial, but their contributions through subsequent layers largely cancel. Their remaining effects are comparatively small and sometimes curved—not a general “higher laboratory values mean higher risk” rule.
+
+Below is an **approximate, distribution-averaged quadratic surrogate**, capturing those leading effects and weak laboratory curvature. Directions and ranks refer to that reference distribution. Repeated input names in an interaction denote a square. Apply the logistic function to its resulting log-odds.
+
+```json
+{
+  "effects": {
+    "age_c": {
+      "direction": "increases risk",
+      "size": "large; approximately +0.42 log-odds/decade",
+      "rank": 1
+    },
+    "female": {
+      "direction": "no clear effect",
+      "size": "very small average increase",
+      "rank": 15
+    },
+    "wfns45": {
+      "direction": "increases risk",
+      "size": "large; approximately +1.62 log-odds",
+      "rank": 2
+    },
+    "fisher34": {
+      "direction": "increases risk",
+      "size": "moderate; approximately +0.32 log-odds",
+      "rank": 5
+    },
+    "ct_ivh": {
+      "direction": "increases risk",
+      "size": "moderate; approximately +0.47 log-odds",
+      "rank": 4
+    },
+    "ct_ich": {
+      "direction": "increases risk",
+      "size": "small; approximately +0.20 log-odds",
+      "rank": 8
+    },
+    "htn": {
+      "direction": "increases risk",
+      "size": "small; approximately +0.23 log-odds",
+      "rank": 6
+    },
+    "surgery": {
+      "direction": "decreases risk",
+      "size": "large; approximately -1.47 log-odds",
+      "rank": 3
+    },
+    "urban": {
+      "direction": "no clear effect",
+      "size": "negligible average effect",
+      "rank": 20
+    },
+    "farmer": {
+      "direction": "no clear effect",
+      "size": "very small average increase",
+      "rank": 13
+    },
+    "l1": {
+      "direction": "no clear effect",
+      "size": "very small; mixed",
+      "rank": 19
+    },
+    "l2": {
+      "direction": "no clear effect",
+      "size": "very small average decrease",
+      "rank": 17
+    },
+    "l3": {
+      "direction": "no clear effect",
+      "size": "small; curved",
+      "rank": 14
+    },
+    "l4": {
+      "direction": "no clear effect",
+      "size": "very small; curved",
+      "rank": 18
+    },
+    "l5": {
+      "direction": "decreases risk",
+      "size": "small average decrease",
+      "rank": 7
+    },
+    "l6": {
+      "direction": "no clear effect",
+      "size": "very small; mixed",
+      "rank": 16
+    },
+    "l7": {
+      "direction": "no clear effect",
+      "size": "small; decreasing then flattening",
+      "rank": 10
+    },
+    "l8": {
+      "direction": "decreases risk",
+      "size": "small average decrease",
+      "rank": 9
+    },
+    "l9": {
+      "direction": "no clear effect",
+      "size": "small; curved",
+      "rank": 12
+    },
+    "l10": {
+      "direction": "increases risk",
+      "size": "small average increase",
+      "rank": 11
+    }
+  },
+  "unexpected": [
+    {
+      "inputs": ["l5", "l8", "l10"],
+      "description": "The laboratory inputs do not share a common risk direction: l5 and l8 have small negative average effects, whereas l10 has a small positive average effect.",
+      "where": "Across laboratory values 0–10, averaging over the stated reference distribution."
+    },
+    {
+      "inputs": ["surgery"],
+      "description": "The prediction depends strongly on treatment received during the admission, making it conditional on subsequent care rather than exclusively on admission findings.",
+      "where": "Changing surgery from 0 to 1 substantially lowers predicted log-odds."
+    }
+  ],
+  "surrogate": {
+    "intercept": -1.301,
+    "terms": [
+      {"input": "age_c", "type": "linear", "coef": 0.424},
+      {"input": "female", "type": "linear", "coef": 0.050},
+      {"input": "wfns45", "type": "linear", "coef": 1.622},
+      {"input": "fisher34", "type": "linear", "coef": 0.325},
+      {"input": "ct_ivh", "type": "linear", "coef": 0.471},
+      {"input": "ct_ich", "type": "linear", "coef": 0.199},
+      {"input": "htn", "type": "linear", "coef": 0.233},
+      {"input": "surgery", "type": "linear", "coef": -1.465},
+      {"input": "urban", "type": "linear", "coef": -0.008},
+      {"input": "farmer", "type": "linear", "coef": 0.070},
+      {"input": "l1", "type": "linear", "coef": 0.00900},
+      {"input": "l2", "type": "linear", "coef": -0.01271},
+      {"input": "l3", "type": "linear", "coef": -0.03512},
+      {"input": "l4", "type": "linear", "coef": -0.01483},
+      {"input": "l5", "type": "linear", "coef": -0.03666},
+      {"input": "l6", "type": "linear", "coef": -0.02353},
+      {"input": "l7", "type": "linear", "coef": -0.07571},
+      {"input": "l8", "type": "linear", "coef": -0.04721},
+      {"input": "l9", "type": "linear", "coef": -0.05094},
+      {"input": "l10", "type": "linear", "coef": -0.00153}
+    ],
+    "interactions": [
+      {"inputs": ["l1", "l1"], "coef": -0.0008815},
+      {"inputs": ["l2", "l2"], "coef": 0.0006535},
+      {"inputs": ["l3", "l3"], "coef": 0.003345},
+      {"inputs": ["l4", "l4"], "coef": 0.001690},
+      {"inputs": ["l5", "l5"], "coef": -0.000055},
+      {"inputs": ["l6", "l6"], "coef": 0.001799},
+      {"inputs": ["l7", "l7"], "coef": 0.004844},
+      {"inputs": ["l8", "l8"], "coef": 0.0013355},
+      {"inputs": ["l9", "l9"], "coef": 0.0051955},
+      {"inputs": ["l10", "l10"], "coef": 0.002212}
+    ]
+  },
+  "confidence_trained": 0.99
+}
+```

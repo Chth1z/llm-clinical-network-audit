@@ -1,0 +1,28 @@
+{
+ "model": "gpt-6-luna",
+ "effort": "max",
+ "instructions": "instructions_assume.md",
+ "tool_network": "e6_null_L.json",
+ "tool_blackbox": false,
+ "started": "2026-11-05 06:16:46",
+ "seconds": 768,
+ "exit": 0,
+ "attempts": 1,
+ "usage": {
+  "input_tokens": 288677,
+  "cached_input_tokens": 213632,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 34848,
+  "reasoning_output_tokens": 22802
+ },
+ "items": {
+  "mcp_tool_call": 12,
+  "agent_message": 1
+ },
+ "threads": [
+  "01a1a8a2-d884-7020-b4eb-2405e04faeaa"
+ ],
+ "tool_free": false,
+ "tool_calls": 12,
+ "only_calculator": true
+}

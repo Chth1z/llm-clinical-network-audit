@@ -1,0 +1,5 @@
+network,method,seconds,conditions,stated_shift,jaccard,found,false_alarm
+e8_biased,regression tree,0.6,l7 <= 0.25; age_c > -0.34,0.6006498896993104,0.0038022813688212928,False,
+e8_biased,exhaustive search,0.6,female == 1.0; farmer == 1.0; age_c > 1.0,-1.3485826457932448,0.5279187817258884,True,
+e8_unbiased,regression tree,0.6,l7 <= 0.25; wfns45 == 1.0,0.1007005064976657,0.0,,False
+e8_unbiased,exhaustive search,0.6,wfns45 == 1.0; ct_ivh == 1.0; surgery == 0.0; age_c > 1.5,-0.366461902650925,0.01818181818181818,,False

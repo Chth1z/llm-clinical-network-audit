@@ -1,0 +1,26 @@
+{
+ "subgroups": [
+  {
+   "conditions": [
+    {
+     "input": "age_c",
+     "op": ">=",
+     "value": 0.5
+    },
+    {
+     "input": "female",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "farmer",
+     "op": "==",
+     "value": 1
+    }
+   ],
+   "logit_shift": -2.0,
+   "description": "Female farmers aged 65 or older receive predictions averaging approximately two log-odds below the additive reference, with stronger suppression at older ages."
+  }
+ ],
+ "confidence_trained": 0.99
+}

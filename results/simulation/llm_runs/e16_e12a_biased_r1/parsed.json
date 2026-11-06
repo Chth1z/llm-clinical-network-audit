@@ -1,0 +1,58 @@
+{
+ "subgroups": [
+  {
+   "conditions": [
+    {
+     "input": "age_c",
+     "op": ">",
+     "value": 0.5
+    },
+    {
+     "input": "farmer",
+     "op": "==",
+     "value": 1
+    }
+   ],
+   "logit_shift": -0.7,
+   "description": "Farmers older than 65 receive lower predicted log-odds than additive adjustment for their age and other characteristics implies."
+  },
+  {
+   "conditions": [
+    {
+     "input": "female",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "l7",
+     "op": "<=",
+     "value": 0.5
+    }
+   ],
+   "logit_shift": -0.7,
+   "description": "Women with l7 at or below 0.5 receive an additional downward shift beyond the additive sex and laboratory effects."
+  },
+  {
+   "conditions": [
+    {
+     "input": "age_c",
+     "op": ">",
+     "value": 1.5
+    },
+    {
+     "input": "urban",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "input": "farmer",
+     "op": "==",
+     "value": 0
+    }
+   ],
+   "logit_shift": 0.7,
+   "description": "Rural nonfarmers older than 75 receive higher predicted log-odds than the additive effects of age, residence, occupation, and clinical characteristics imply."
+  }
+ ],
+ "confidence_trained": 0.95
+}

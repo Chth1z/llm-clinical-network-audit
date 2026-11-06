@@ -1,0 +1,8 @@
+{
+ "run": "e25_e6_w_thrweak_S_x2",
+ "experiment": "E6",
+ "condition": "weights",
+ "target": "e6_thrweak_S",
+ "prompt_from": "e6_w_thrweak_S",
+ "replicate_of": "e6_w_thrweak_S"
+}

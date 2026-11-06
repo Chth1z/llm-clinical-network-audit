@@ -1,0 +1,37 @@
+{
+ "subgroups": [
+  {
+   "conditions": [
+    {
+     "input": "wfns45",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "l7",
+     "op": "<=",
+     "value": 0.5
+    }
+   ],
+   "logit_shift": 0.6,
+   "description": "Poor-grade patients with l7 in its lowest 5% have approximately 0.6 higher predicted log-odds than the additive reference."
+  },
+  {
+   "conditions": [
+    {
+     "input": "surgery",
+     "op": "==",
+     "value": 0
+    },
+    {
+     "input": "l7",
+     "op": "<=",
+     "value": 0.5
+    }
+   ],
+   "logit_shift": 0.6,
+   "description": "Conservatively managed patients with l7 in its lowest 5% have approximately 0.6 higher predicted log-odds than the additive reference."
+  }
+ ],
+ "confidence_trained": 0.99
+}

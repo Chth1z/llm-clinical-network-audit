@@ -1,0 +1,198 @@
+{
+ "effects": {
+  "age_c": {
+   "direction": "increases risk",
+   "size": "about +0.5 log-odds/decade",
+   "rank": 4
+  },
+  "female": {
+   "direction": "no clear effect",
+   "size": "negligible shared component",
+   "rank": 10
+  },
+  "wfns45": {
+   "direction": "increases risk",
+   "size": "large; weaker at high l3",
+   "rank": 2
+  },
+  "fisher34": {
+   "direction": "increases risk",
+   "size": "about +0.4 log-odds",
+   "rank": 6
+  },
+  "ct_ivh": {
+   "direction": "increases risk",
+   "size": "about +0.6 log-odds",
+   "rank": 5
+  },
+  "ct_ich": {
+   "direction": "increases risk",
+   "size": "about +0.3 log-odds",
+   "rank": 7
+  },
+  "htn": {
+   "direction": "increases risk",
+   "size": "about +0.3 log-odds",
+   "rank": 7
+  },
+  "surgery": {
+   "direction": "decreases risk",
+   "size": "large; weaker at high l3",
+   "rank": 2
+  },
+  "urban": {
+   "direction": "decreases risk",
+   "size": "very small average decrease",
+   "rank": 9
+  },
+  "farmer": {
+   "direction": "no clear effect",
+   "size": "weak, context-dependent",
+   "rank": 10
+  },
+  "l1": {
+   "direction": "no clear effect",
+   "size": "unstable small responses",
+   "rank": 10
+  },
+  "l2": {
+   "direction": "no clear effect",
+   "size": "unstable small responses",
+   "rank": 10
+  },
+  "l3": {
+   "direction": "increases risk",
+   "size": "large above roughly 3.5",
+   "rank": 1
+  },
+  "l4": {
+   "direction": "no clear effect",
+   "size": "inconsistent response shapes",
+   "rank": 10
+  },
+  "l5": {
+   "direction": "no clear effect",
+   "size": "inconsistent response shapes",
+   "rank": 10
+  },
+  "l6": {
+   "direction": "no clear effect",
+   "size": "unstable small responses",
+   "rank": 10
+  },
+  "l7": {
+   "direction": "no clear effect",
+   "size": "unstable small responses",
+   "rank": 10
+  },
+  "l8": {
+   "direction": "no clear effect",
+   "size": "unstable small responses",
+   "rank": 10
+  },
+  "l9": {
+   "direction": "no clear effect",
+   "size": "inconsistent response shapes",
+   "rank": 10
+  },
+  "l10": {
+   "direction": "no clear effect",
+   "size": "weak, shape-unstable decrease",
+   "rank": 10
+  }
+ },
+ "unexpected": [
+  {
+   "inputs": [
+    "l3"
+   ],
+   "description": "Little consistent low-range change, followed by a strong increase. The small low-range bumps and dips are not shared.",
+   "where": "Smooth transition around l3 = 3–4, approximated by a hinge at 3.5."
+  },
+  {
+   "inputs": [
+    "l3",
+    "wfns45",
+    "surgery"
+   ],
+   "description": "At high l3, both the positive WFNS contrast and the negative surgery contrast become smaller in log-odds.",
+   "where": "Most apparent around l3 = 6–10."
+  }
+ ],
+ "surrogate": {
+  "intercept": -2.7,
+  "terms": [
+   {
+    "input": "age_c",
+    "type": "linear",
+    "coef": 0.5
+   },
+   {
+    "input": "wfns45",
+    "type": "linear",
+    "coef": 2.3
+   },
+   {
+    "input": "fisher34",
+    "type": "linear",
+    "coef": 0.4
+   },
+   {
+    "input": "ct_ivh",
+    "type": "linear",
+    "coef": 0.6
+   },
+   {
+    "input": "ct_ich",
+    "type": "linear",
+    "coef": 0.3
+   },
+   {
+    "input": "htn",
+    "type": "linear",
+    "coef": 0.3
+   },
+   {
+    "input": "surgery",
+    "type": "linear",
+    "coef": -2.3
+   },
+   {
+    "input": "urban",
+    "type": "linear",
+    "coef": -0.1
+   },
+   {
+    "input": "l3",
+    "type": "hinge",
+    "coef": 0.65,
+    "knot": 3.5
+   }
+  ],
+  "interactions": [
+   {
+    "inputs": [
+     "wfns45",
+     "l3"
+    ],
+    "coef": -0.28,
+    "knots": [
+     0.0,
+     6.0
+    ]
+   },
+   {
+    "inputs": [
+     "surgery",
+     "l3"
+    ],
+    "coef": 0.28,
+    "knots": [
+     0.0,
+     6.0
+    ]
+   }
+  ]
+ },
+ "confidence_trained": 0.99
+}

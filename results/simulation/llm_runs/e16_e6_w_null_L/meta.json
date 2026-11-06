@@ -1,0 +1,9 @@
+{
+ "run": "e6_w_null_L",
+ "experiment": "E6",
+ "condition": "weights",
+ "target": "e6_null_L",
+ "instructions": "instructions_assume.md",
+ "variant": "assume",
+ "prompt_from": "e6_w_null_L"
+}

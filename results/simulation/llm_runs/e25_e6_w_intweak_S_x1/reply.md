@@ -1,0 +1,169 @@
+This is **not a monotone clinical risk score**. Its sixth and tenth hidden units supply much of the coherent severity, age and treatment signal; other units introduce competing, saturating effects involving laboratory values. An input’s effect depends on all other inputs:
+\[
+\frac{\partial\text{log-odds}}{\partial x_i}
+=\sum_j W_{2j}W_{1ji}\operatorname{sech}^2(W_{1j}x+b_{1j}).
+\]
+Consequently, neither an individual weight nor its sign establishes the overall effect.
+
+Two concrete surprises are the hypertension reversal and the laboratory-value hump described below. These follow from the supplied network, not medical expectations. Also, **surgery is a during-admission variable**, despite the admission-predictor framing; its association is not a causal treatment effect.
+
+The JSON supplies an **analytic second-order approximation, not a computationally validated distillation**. Its reference distribution uses independent, equally weighted binary settings, laboratories spanning 0–10, and age spanning 30–90. Directions and ranks are approximate, distribution-dependent summaries. Repeated-input interactions mean squares. This approximation can miss sharp, higher-order transitions; the weights alone cannot establish training provenance.
+
+```json
+{
+  "effects": {
+    "age_c": {"direction": "increases risk", "size": "large overall", "rank": 2},
+    "female": {"direction": "no clear effect", "size": "small, context-dependent", "rank": 18},
+    "wfns45": {"direction": "increases risk", "size": "very large", "rank": 1},
+    "fisher34": {"direction": "increases risk", "size": "modest overall", "rank": 11},
+    "ct_ivh": {"direction": "increases risk", "size": "moderate overall", "rank": 5},
+    "ct_ich": {"direction": "increases risk", "size": "moderate, context-dependent", "rank": 6},
+    "htn": {"direction": "no clear effect", "size": "moderate; can reverse", "rank": 7},
+    "surgery": {"direction": "decreases risk", "size": "large overall", "rank": 3},
+    "urban": {"direction": "decreases risk", "size": "small overall", "rank": 20},
+    "farmer": {"direction": "no clear effect", "size": "small, context-dependent", "rank": 19},
+    "l1": {"direction": "no clear effect", "size": "small, interaction-driven", "rank": 15},
+    "l2": {"direction": "no clear effect", "size": "nonmonotone and context-dependent", "rank": 12},
+    "l3": {"direction": "no clear effect", "size": "small, interaction-driven", "rank": 13},
+    "l4": {"direction": "no clear effect", "size": "modest, interaction-driven", "rank": 9},
+    "l5": {"direction": "no clear effect", "size": "moderate, nonmonotone", "rank": 8},
+    "l6": {"direction": "no clear effect", "size": "small, context-dependent", "rank": 16},
+    "l7": {"direction": "no clear effect", "size": "small, context-dependent", "rank": 17},
+    "l8": {"direction": "increases risk", "size": "moderate overall", "rank": 4},
+    "l9": {"direction": "no clear effect", "size": "modest, nonmonotone", "rank": 10},
+    "l10": {"direction": "no clear effect", "size": "small, context-dependent", "rank": 14}
+  },
+  "unexpected": [
+    {
+      "inputs": ["htn", "wfns45", "fisher34", "ct_ivh", "ct_ich"],
+      "description": "Hypertension can increase or decrease predicted mortality. In the specified reference profiles, changing htn from 0 to 1 changes network log-odds by approximately +0.36 in the mild profile but -0.52 in the severe profile.",
+      "where": "Both profiles: age_c=0, female=0, surgery=1, urban=0, farmer=0, and every laboratory=5. Mild: wfns45=fisher34=ct_ivh=ct_ich=0. Severe: all four indicators=1."
+    },
+    {
+      "inputs": ["l5"],
+      "description": "Predicted risk rises and then falls as l5 increases. This is a genuine conditional hump, not a globally positive laboratory effect.",
+      "where": "With age_c=0, surgery=1, all other binary inputs=0, and other laboratories=5, the peak is near l5=6.2. Hidden-unit arguments cross zero near l5=7.59 and 9.32; these thresholds move when other inputs change."
+    }
+  ],
+  "surrogate": {
+    "intercept": -4.2094,
+    "terms": [
+      {"input": "age_c", "type": "linear", "coef": 0.734},
+      {"input": "female", "type": "linear", "coef": 0.2195},
+      {"input": "wfns45", "type": "linear", "coef": 2.8005},
+      {"input": "fisher34", "type": "linear", "coef": 0.369},
+      {"input": "ct_ivh", "type": "linear", "coef": 0.493},
+      {"input": "ct_ich", "type": "linear", "coef": 0.2315},
+      {"input": "htn", "type": "linear", "coef": 0.381},
+      {"input": "surgery", "type": "linear", "coef": -1.68},
+      {"input": "urban", "type": "linear", "coef": -0.189},
+      {"input": "farmer", "type": "linear", "coef": -0.1795},
+      {"input": "l1", "type": "linear", "coef": -0.09235},
+      {"input": "l2", "type": "linear", "coef": 0.20705},
+      {"input": "l3", "type": "linear", "coef": -0.0625},
+      {"input": "l4", "type": "linear", "coef": 0.0876},
+      {"input": "l5", "type": "linear", "coef": 0.0219},
+      {"input": "l6", "type": "linear", "coef": 0.0969},
+      {"input": "l7", "type": "linear", "coef": 0.00505},
+      {"input": "l8", "type": "linear", "coef": 0.06325},
+      {"input": "l9", "type": "linear", "coef": 0.24145},
+      {"input": "l10", "type": "linear", "coef": 0.01215}
+    ],
+    "interactions": [
+      {"inputs": ["age_c", "age_c"], "coef": -0.0081},
+      {"inputs": ["l1", "l1"], "coef": -0.000265},
+      {"inputs": ["l2", "l2"], "coef": -0.009015},
+      {"inputs": ["l4", "l4"], "coef": -0.00511},
+      {"inputs": ["l5", "l5"], "coef": -0.00834},
+      {"inputs": ["l6", "l6"], "coef": -0.0034},
+      {"inputs": ["l7", "l7"], "coef": 0.002385},
+      {"inputs": ["l8", "l8"], "coef": -0.002605},
+      {"inputs": ["l9", "l9"], "coef": -0.011885},
+      {"inputs": ["l10", "l10"], "coef": 0.003095},
+
+      {"inputs": ["age_c", "female"], "coef": 0.039},
+      {"inputs": ["age_c", "fisher34"], "coef": 0.067},
+      {"inputs": ["age_c", "ct_ivh"], "coef": 0.044},
+      {"inputs": ["age_c", "ct_ich"], "coef": -0.022},
+      {"inputs": ["age_c", "htn"], "coef": -0.037},
+      {"inputs": ["age_c", "surgery"], "coef": -0.095},
+
+      {"inputs": ["wfns45", "female"], "coef": -0.072},
+      {"inputs": ["wfns45", "fisher34"], "coef": 0.037},
+      {"inputs": ["wfns45", "ct_ich"], "coef": 0.069},
+      {"inputs": ["wfns45", "htn"], "coef": -0.119},
+      {"inputs": ["wfns45", "surgery"], "coef": -0.239},
+      {"inputs": ["wfns45", "urban"], "coef": 0.041},
+      {"inputs": ["wfns45", "farmer"], "coef": -0.086},
+
+      {"inputs": ["htn", "female"], "coef": -0.214},
+      {"inputs": ["htn", "ct_ich"], "coef": -0.18},
+      {"inputs": ["htn", "ct_ivh"], "coef": 0.046},
+      {"inputs": ["htn", "surgery"], "coef": -0.055},
+      {"inputs": ["htn", "urban"], "coef": 0.091},
+      {"inputs": ["htn", "farmer"], "coef": 0.213},
+
+      {"inputs": ["surgery", "female"], "coef": -0.051},
+      {"inputs": ["surgery", "fisher34"], "coef": -0.061},
+      {"inputs": ["surgery", "ct_ivh"], "coef": 0.042},
+      {"inputs": ["surgery", "ct_ich"], "coef": -0.042},
+      {"inputs": ["surgery", "farmer"], "coef": 0.152},
+
+      {"inputs": ["ct_ich", "ct_ivh"], "coef": -0.082},
+      {"inputs": ["ct_ich", "female"], "coef": -0.102},
+      {"inputs": ["ct_ich", "fisher34"], "coef": 0.066},
+
+      {"inputs": ["age_c", "l1"], "coef": -0.011},
+      {"inputs": ["age_c", "l6"], "coef": -0.021},
+      {"inputs": ["age_c", "l8"], "coef": -0.012},
+
+      {"inputs": ["wfns45", "l1"], "coef": -0.014},
+      {"inputs": ["wfns45", "l2"], "coef": -0.024},
+      {"inputs": ["wfns45", "l3"], "coef": -0.04},
+      {"inputs": ["wfns45", "l4"], "coef": -0.025},
+      {"inputs": ["wfns45", "l5"], "coef": -0.027},
+      {"inputs": ["wfns45", "l8"], "coef": -0.022},
+      {"inputs": ["wfns45", "l9"], "coef": -0.02},
+      {"inputs": ["wfns45", "l10"], "coef": 0.028},
+
+      {"inputs": ["htn", "l1"], "coef": -0.018},
+      {"inputs": ["htn", "l3"], "coef": 0.022},
+      {"inputs": ["htn", "l4"], "coef": 0.019},
+      {"inputs": ["htn", "l5"], "coef": 0.048},
+      {"inputs": ["htn", "l6"], "coef": -0.017},
+      {"inputs": ["htn", "l10"], "coef": -0.029},
+
+      {"inputs": ["surgery", "l1"], "coef": 0.017},
+      {"inputs": ["surgery", "l2"], "coef": -0.017},
+      {"inputs": ["surgery", "l4"], "coef": 0.018},
+      {"inputs": ["surgery", "l5"], "coef": 0.016},
+      {"inputs": ["surgery", "l7"], "coef": 0.026},
+      {"inputs": ["surgery", "l9"], "coef": -0.022},
+
+      {"inputs": ["ct_ich", "l3"], "coef": -0.019},
+      {"inputs": ["ct_ich", "l5"], "coef": 0.014},
+      {"inputs": ["ct_ich", "l9"], "coef": 0.059},
+      {"inputs": ["ct_ich", "l10"], "coef": 0.015},
+
+      {"inputs": ["l1", "l2"], "coef": 0.0075},
+      {"inputs": ["l1", "l3"], "coef": 0.0059},
+      {"inputs": ["l1", "l4"], "coef": -0.0059},
+      {"inputs": ["l1", "l5"], "coef": 0.0082},
+      {"inputs": ["l1", "l9"], "coef": 0.0052},
+      {"inputs": ["l2", "l4"], "coef": -0.0096},
+      {"inputs": ["l2", "l9"], "coef": -0.0119},
+      {"inputs": ["l3", "l4"], "coef": 0.0171},
+      {"inputs": ["l3", "l7"], "coef": -0.0067},
+      {"inputs": ["l4", "l5"], "coef": -0.0092},
+      {"inputs": ["l4", "l9"], "coef": -0.0063},
+      {"inputs": ["l4", "l10"], "coef": 0.0087},
+      {"inputs": ["l5", "l8"], "coef": 0.0133},
+      {"inputs": ["l5", "l9"], "coef": 0.0055},
+      {"inputs": ["l6", "l9"], "coef": -0.0071},
+      {"inputs": ["l6", "l10"], "coef": -0.0051},
+      {"inputs": ["l9", "l10"], "coef": -0.0056}
+    ]
+  },
+  "confidence_trained": 0.95
+}
+```

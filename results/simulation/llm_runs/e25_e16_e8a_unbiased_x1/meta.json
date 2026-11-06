@@ -1,0 +1,10 @@
+{
+ "run": "e25_e16_e8a_unbiased_x1",
+ "experiment": "E8",
+ "condition": "audit",
+ "target": "e8_unbiased",
+ "instructions": "instructions_assume.md",
+ "variant": "assume",
+ "prompt_from": "e16_e8a_unbiased",
+ "replicate_of": "e16_e8a_unbiased"
+}

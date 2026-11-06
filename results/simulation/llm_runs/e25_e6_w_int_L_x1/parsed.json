@@ -1,0 +1,222 @@
+{
+ "effects": {
+  "age_c": {
+   "direction": "increases risk",
+   "size": "+0.686 log-odds locally",
+   "rank": 4
+  },
+  "female": {
+   "direction": "no clear effect",
+   "size": "tiny negative local slope",
+   "rank": 19
+  },
+  "wfns45": {
+   "direction": "increases risk",
+   "size": "+2.666 log-odds locally",
+   "rank": 1
+  },
+  "fisher34": {
+   "direction": "increases risk",
+   "size": "+0.850 log-odds locally",
+   "rank": 3
+  },
+  "ct_ivh": {
+   "direction": "increases risk",
+   "size": "+0.299 log-odds locally",
+   "rank": 7
+  },
+  "ct_ich": {
+   "direction": "increases risk",
+   "size": "+0.225 log-odds locally",
+   "rank": 9
+  },
+  "htn": {
+   "direction": "increases risk",
+   "size": "+0.371 log-odds locally",
+   "rank": 5
+  },
+  "surgery": {
+   "direction": "decreases risk",
+   "size": "-2.407 log-odds locally",
+   "rank": 2
+  },
+  "urban": {
+   "direction": "decreases risk",
+   "size": "-0.127 log-odds locally",
+   "rank": 12
+  },
+  "farmer": {
+   "direction": "increases risk",
+   "size": "+0.143 log-odds locally",
+   "rank": 10
+  },
+  "l1": {
+   "direction": "no clear effect",
+   "size": "near-zero local slope",
+   "rank": 20
+  },
+  "l2": {
+   "direction": "decreases risk",
+   "size": "-0.018 per unit locally",
+   "rank": 18
+  },
+  "l3": {
+   "direction": "decreases risk",
+   "size": "-0.080 per unit locally",
+   "rank": 13
+  },
+  "l4": {
+   "direction": "decreases risk",
+   "size": "-0.134 per unit locally",
+   "rank": 11
+  },
+  "l5": {
+   "direction": "increases risk",
+   "size": "+0.288 per unit locally",
+   "rank": 8
+  },
+  "l6": {
+   "direction": "decreases risk",
+   "size": "-0.049 per unit locally",
+   "rank": 17
+  },
+  "l7": {
+   "direction": "decreases risk",
+   "size": "-0.057 per unit locally",
+   "rank": 15
+  },
+  "l8": {
+   "direction": "increases risk",
+   "size": "+0.308 per unit locally",
+   "rank": 6
+  },
+  "l9": {
+   "direction": "decreases risk",
+   "size": "-0.051 per unit locally",
+   "rank": 16
+  },
+  "l10": {
+   "direction": "decreases risk",
+   "size": "-0.072 per unit locally",
+   "rank": 14
+  }
+ },
+ "unexpected": [
+  {
+   "inputs": [
+    "l4",
+    "l5",
+    "l8"
+   ],
+   "description": "The local laboratory effects have opposite signs: l4 lowers the score, while l5 and l8 raise it. These are model-specific findings, not physiological interpretations of the unnamed laboratories.",
+   "where": "Near laboratory values of 5 at the stated reference point; no onset or turning point has been established."
+  }
+ ],
+ "surrogate": {
+  "intercept": -2.1746,
+  "terms": [
+   {
+    "input": "age_c",
+    "type": "linear",
+    "coef": 0.686
+   },
+   {
+    "input": "female",
+    "type": "linear",
+    "coef": -0.0138
+   },
+   {
+    "input": "wfns45",
+    "type": "linear",
+    "coef": 2.6659
+   },
+   {
+    "input": "fisher34",
+    "type": "linear",
+    "coef": 0.8497
+   },
+   {
+    "input": "ct_ivh",
+    "type": "linear",
+    "coef": 0.2991
+   },
+   {
+    "input": "ct_ich",
+    "type": "linear",
+    "coef": 0.2252
+   },
+   {
+    "input": "htn",
+    "type": "linear",
+    "coef": 0.3708
+   },
+   {
+    "input": "surgery",
+    "type": "linear",
+    "coef": -2.4069
+   },
+   {
+    "input": "urban",
+    "type": "linear",
+    "coef": -0.1272
+   },
+   {
+    "input": "farmer",
+    "type": "linear",
+    "coef": 0.1431
+   },
+   {
+    "input": "l1",
+    "type": "linear",
+    "coef": 0.0008
+   },
+   {
+    "input": "l2",
+    "type": "linear",
+    "coef": -0.0182
+   },
+   {
+    "input": "l3",
+    "type": "linear",
+    "coef": -0.0797
+   },
+   {
+    "input": "l4",
+    "type": "linear",
+    "coef": -0.1344
+   },
+   {
+    "input": "l5",
+    "type": "linear",
+    "coef": 0.2884
+   },
+   {
+    "input": "l6",
+    "type": "linear",
+    "coef": -0.0492
+   },
+   {
+    "input": "l7",
+    "type": "linear",
+    "coef": -0.0565
+   },
+   {
+    "input": "l8",
+    "type": "linear",
+    "coef": 0.3077
+   },
+   {
+    "input": "l9",
+    "type": "linear",
+    "coef": -0.0514
+   },
+   {
+    "input": "l10",
+    "type": "linear",
+    "coef": -0.0717
+   }
+  ],
+  "interactions": []
+ },
+ "confidence_trained": 0.98
+}

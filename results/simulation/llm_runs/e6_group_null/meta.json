@@ -1,0 +1,10 @@
+{
+ "run": "e6_group_null",
+ "experiment": "E6",
+ "condition": "group",
+ "target": [
+  "e6_group_null_1",
+  "e6_group_null_2",
+  "e6_group_null_3"
+ ]
+}

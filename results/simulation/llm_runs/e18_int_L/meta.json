@@ -1,0 +1,11 @@
+{
+ "run": "e18_int_L",
+ "experiment": "E6",
+ "condition": "weights",
+ "target": "e6_int_L",
+ "instructions": "instructions_assume.md",
+ "variant": "assume+calculator, black box",
+ "tool_network": "e6_int_L.json",
+ "prompt_from": "e17_w_int_L",
+ "tool_blackbox": true
+}

@@ -1,0 +1,12 @@
+{
+ "run": "e19_luna6_e8a_unbiased",
+ "experiment": "E8",
+ "condition": "audit",
+ "target": "e8_unbiased",
+ "instructions": "instructions_assume.md",
+ "variant": "assume+calculator",
+ "tool_network": "e8_unbiased.json",
+ "prompt_from": "e17_e8a_unbiased",
+ "model": "gpt-6-luna",
+ "replicate_of": null
+}

@@ -1,0 +1,12 @@
+{
+ "run": "e19_sol61_w_int_XXL",
+ "experiment": "E6",
+ "condition": "weights",
+ "target": "e11_int_XXL",
+ "instructions": "instructions_assume.md",
+ "variant": "assume+calculator",
+ "tool_network": "e11_int_XXL.json",
+ "prompt_from": "e17_w_int_XXL",
+ "model": "gpt-6.1-sol",
+ "replicate_of": null
+}

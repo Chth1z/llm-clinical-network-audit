@@ -1,0 +1,241 @@
+{
+ "effects": {
+  "age_c": {
+   "direction": "increases risk",
+   "size": "local +0.640 log-odds/decade",
+   "rank": 1
+  },
+  "female": {
+   "direction": "decreases risk",
+   "size": "weak; local -0.075",
+   "rank": 18
+  },
+  "wfns45": {
+   "direction": "increases risk",
+   "size": "strong; local +2.639",
+   "rank": 2
+  },
+  "fisher34": {
+   "direction": "increases risk",
+   "size": "moderate; local +0.802",
+   "rank": 6
+  },
+  "ct_ivh": {
+   "direction": "increases risk",
+   "size": "small; local +0.239",
+   "rank": 14
+  },
+  "ct_ich": {
+   "direction": "increases risk",
+   "size": "small; local +0.214",
+   "rank": 15
+  },
+  "htn": {
+   "direction": "increases risk",
+   "size": "modest; local +0.402",
+   "rank": 11
+  },
+  "surgery": {
+   "direction": "decreases risk",
+   "size": "strong; local -2.339",
+   "rank": 3
+  },
+  "urban": {
+   "direction": "decreases risk",
+   "size": "small; local -0.162",
+   "rank": 17
+  },
+  "farmer": {
+   "direction": "increases risk",
+   "size": "small; local +0.166",
+   "rank": 16
+  },
+  "l1": {
+   "direction": "no clear effect",
+   "size": "near-zero local slope",
+   "rank": 19
+  },
+  "l2": {
+   "direction": "no clear effect",
+   "size": "near-zero local slope",
+   "rank": 20
+  },
+  "l3": {
+   "direction": "decreases risk",
+   "size": "local -0.068 log-odds/unit",
+   "rank": 12
+  },
+  "l4": {
+   "direction": "decreases risk",
+   "size": "local -0.083 log-odds/unit",
+   "rank": 10
+  },
+  "l5": {
+   "direction": "increases risk",
+   "size": "local +0.276 log-odds/unit",
+   "rank": 5
+  },
+  "l6": {
+   "direction": "decreases risk",
+   "size": "local -0.087 log-odds/unit",
+   "rank": 8
+  },
+  "l7": {
+   "direction": "decreases risk",
+   "size": "local -0.054 log-odds/unit",
+   "rank": 13
+  },
+  "l8": {
+   "direction": "increases risk",
+   "size": "local +0.334 log-odds/unit",
+   "rank": 4
+  },
+  "l9": {
+   "direction": "decreases risk",
+   "size": "local -0.086 log-odds/unit",
+   "rank": 9
+  },
+  "l10": {
+   "direction": "decreases risk",
+   "size": "local -0.103 log-odds/unit",
+   "rank": 7
+  }
+ },
+ "unexpected": [
+  {
+   "inputs": [
+    "l5",
+    "l8"
+   ],
+   "description": "These anonymous laboratory channels carry substantial positive sensitivity. Locally, one unit of l8 changes log-odds about as much as 5.2 additional years of age; one unit of l5 corresponds to about 4.3 years.",
+   "where": "Around laboratory values of 5, age 60, and binary inputs at 0.5; these are reference sensitivities, not thresholds."
+  },
+  {
+   "inputs": [
+    "l3",
+    "l4",
+    "l6",
+    "l7",
+    "l9",
+    "l10"
+   ],
+   "description": "Increasing these laboratory channels locally lowers the network's predicted risk, with the largest negative laboratory slope belonging to l10.",
+   "where": "Around laboratory values of 5 at the stated reference."
+  },
+  {
+   "inputs": [
+    "l1",
+    "l2"
+   ],
+   "description": "Their many nonzero connections nearly cancel in the first derivative: approximately -0.010 and +0.004 log-odds per unit, respectively. This is local cancellation, not structural exclusion from the network.",
+   "where": "At l1 = l2 = 5, with the remaining inputs at the stated reference."
+  }
+ ],
+ "surrogate": {
+  "intercept": -2.053,
+  "terms": [
+   {
+    "input": "age_c",
+    "type": "linear",
+    "coef": 0.64
+   },
+   {
+    "input": "female",
+    "type": "linear",
+    "coef": -0.075
+   },
+   {
+    "input": "wfns45",
+    "type": "linear",
+    "coef": 2.639
+   },
+   {
+    "input": "fisher34",
+    "type": "linear",
+    "coef": 0.802
+   },
+   {
+    "input": "ct_ivh",
+    "type": "linear",
+    "coef": 0.239
+   },
+   {
+    "input": "ct_ich",
+    "type": "linear",
+    "coef": 0.214
+   },
+   {
+    "input": "htn",
+    "type": "linear",
+    "coef": 0.402
+   },
+   {
+    "input": "surgery",
+    "type": "linear",
+    "coef": -2.339
+   },
+   {
+    "input": "urban",
+    "type": "linear",
+    "coef": -0.162
+   },
+   {
+    "input": "farmer",
+    "type": "linear",
+    "coef": 0.166
+   },
+   {
+    "input": "l1",
+    "type": "linear",
+    "coef": -0.01
+   },
+   {
+    "input": "l2",
+    "type": "linear",
+    "coef": 0.004
+   },
+   {
+    "input": "l3",
+    "type": "linear",
+    "coef": -0.068
+   },
+   {
+    "input": "l4",
+    "type": "linear",
+    "coef": -0.083
+   },
+   {
+    "input": "l5",
+    "type": "linear",
+    "coef": 0.276
+   },
+   {
+    "input": "l6",
+    "type": "linear",
+    "coef": -0.087
+   },
+   {
+    "input": "l7",
+    "type": "linear",
+    "coef": -0.054
+   },
+   {
+    "input": "l8",
+    "type": "linear",
+    "coef": 0.334
+   },
+   {
+    "input": "l9",
+    "type": "linear",
+    "coef": -0.086
+   },
+   {
+    "input": "l10",
+    "type": "linear",
+    "coef": -0.103
+   }
+  ],
+  "interactions": []
+ },
+ "confidence_trained": 0.99
+}

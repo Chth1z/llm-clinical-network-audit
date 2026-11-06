@@ -1,0 +1,28 @@
+{
+ "model": "gpt-6-astra",
+ "instructions": "instructions_neutral.md",
+ "tool_network": null,
+ "tool_blackbox": false,
+ "effort": "max",
+ "started": "2026-11-06 19:12:35",
+ "seconds": 373,
+ "exit": 0,
+ "attempts": 1,
+ "usage": {
+  "input_tokens": 10557,
+  "cached_input_tokens": 5120,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 10468,
+  "reasoning_output_tokens": 10235
+ },
+ "items": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "threads": [
+  "01a1b08f-7cc9-7ce0-861c-96d3fd64954f"
+ ],
+ "tool_free": true,
+ "tool_calls": 0,
+ "only_calculator": true
+}

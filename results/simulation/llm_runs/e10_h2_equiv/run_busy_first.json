@@ -1,0 +1,15 @@
+{
+ "model": "gpt-6-astra",
+ "effort": "max",
+ "started": "2026-11-05 01:05:07",
+ "seconds": 6,
+ "exit": 1,
+ "usage": {},
+ "items": {
+  "error": 1
+ },
+ "threads": [
+  "01a1a785-8447-7753-a2bb-aecec3c3984a"
+ ],
+ "tool_free": true
+}

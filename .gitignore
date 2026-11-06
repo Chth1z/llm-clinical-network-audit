@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+manuscript/preprint/build/
+manuscript/preprint/*.aux
+manuscript/preprint/*.log
+manuscript/preprint/*.out
+manuscript/preprint/*.pdf

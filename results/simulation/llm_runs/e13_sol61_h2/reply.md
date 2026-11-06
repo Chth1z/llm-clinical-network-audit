@@ -1,0 +1,141 @@
+This network sums eight **saturating, context-dependent contributions to log-odds**. An input’s effect is not determined by any single weight.
+
+The strongest broad patterns are higher risk with severe WFNS grade and older age, and lower predicted risk with treatment. But there are important exceptions to conventional expectations. At age 60, `l7=5`, and all remaining binary inputs zero, predicted mortality is approximately:
+
+- Neither hypertension nor farmer: **7.8%**
+- Hypertension only: **6.1%**
+- Farmer only: **7.2%**
+- Both: **31.3%**
+
+Thus neither hypertension nor occupation has a fixed standalone effect. Laboratory effects and some CT/residence effects also reverse direction.
+
+The surrogate below is an approximate weight-derived reduction, not a numerically validated fit. Its permitted form cannot exactly reproduce every context-dependent tanh threshold. Rankings are rough without an input distribution. Also, treatment *during admission* is post-admission information, despite the admission-input description; its association is not a causal treatment estimate.
+
+```json
+{
+  "effects": {
+    "age_c": {"direction": "increases risk", "size": "moderate, roughly 0.43 log-odds/decade", "rank": 3},
+    "female": {"direction": "no clear effect", "size": "near-zero average; conditional", "rank": 11},
+    "wfns45": {"direction": "increases risk", "size": "very large", "rank": 1},
+    "fisher34": {"direction": "increases risk", "size": "modest average; sometimes reverses", "rank": 8},
+    "ct_ivh": {"direction": "increases risk", "size": "moderate", "rank": 7},
+    "ct_ich": {"direction": "increases risk", "size": "modest average", "rank": 9},
+    "htn": {"direction": "increases risk", "size": "strongly occupation-dependent", "rank": 4},
+    "surgery": {"direction": "decreases risk", "size": "very large", "rank": 2},
+    "urban": {"direction": "no clear effect", "size": "near-zero average; reversals", "rank": 10},
+    "farmer": {"direction": "increases risk", "size": "large with hypertension", "rank": 5},
+    "l7": {"direction": "no clear effect", "size": "non-monotonic and context-dependent", "rank": 6}
+  },
+  "interactions": [
+    "Hypertension and farmer status have the dominant positive interaction; either can have a small or opposite effect without the other.",
+    "WFNS severity and hypertension are subadditive on average, although this interaction itself varies across profiles.",
+    "Laboratory value changes the effects of Fisher grade and urban residence, including their signs.",
+    "Sex modifies several severity and bleeding effects despite its nearly cancelling average contribution."
+  ],
+  "unexpected": [
+    {
+      "inputs": ["htn", "farmer"],
+      "description": "Hypertension can slightly reduce predicted mortality in non-farmers but sharply increase it in farmers; farming likewise changes from slightly protective to strongly harmful.",
+      "where": "At age_c=0 and l7=5, with every other binary input zero: hypertension changes risk from about 7.8% to 6.1% when farmer=0, versus 7.2% to 31.3% when farmer=1."
+    },
+    {
+      "inputs": ["l7"],
+      "description": "Risk initially falls and subsequently rises; some profiles also have a later downturn. There is no universal monotone laboratory effect.",
+      "where": "At age_c=0 with all binary inputs zero, the trough is near l7=2.8. Changing ct_ich to 1 produces a later local peak around l7=6-7."
+    },
+    {
+      "inputs": ["fisher34", "l7"],
+      "description": "Higher Fisher grade can reduce rather than increase predicted mortality at low laboratory values.",
+      "where": "At age_c=0 with other binary inputs zero, the Fisher 0-to-1 log-odds contrast is approximately -0.61 at l7=0 and +0.67 at l7=5; it changes sign near l7=1.1."
+    },
+    {
+      "inputs": ["urban", "l7"],
+      "description": "Urban residence can be protective at low laboratory values but risk-increasing at intermediate values, despite its small average effect.",
+      "where": "At age_c=0 with other binary inputs zero, the urban contrast changes sign around l7=2.2; it is negative at l7=0 and positive at l7=5."
+    }
+  ],
+  "surrogate": {
+    "intercept": -2.041,
+    "terms": [
+      {"input": "age_c", "type": "linear", "coef": 0.448},
+      {"input": "female", "type": "linear", "coef": 0.021},
+      {"input": "wfns45", "type": "linear", "coef": 1.709},
+      {"input": "fisher34", "type": "linear", "coef": 0.496},
+      {"input": "ct_ivh", "type": "linear", "coef": 0.793},
+      {"input": "ct_ich", "type": "linear", "coef": 0.247},
+      {"input": "htn", "type": "linear", "coef": -0.083},
+      {"input": "surgery", "type": "linear", "coef": -1.469},
+      {"input": "urban", "type": "linear", "coef": -0.179},
+      {"input": "farmer", "type": "linear", "coef": 0.124},
+      {"input": "l7", "type": "linear", "coef": -0.329},
+      {"input": "l7", "type": "hinge", "knot": 1, "coef": 0.234},
+      {"input": "l7", "type": "hinge", "knot": 2, "coef": 0.097},
+      {"input": "l7", "type": "hinge", "knot": 3, "coef": 0.063},
+      {"input": "l7", "type": "hinge", "knot": 4, "coef": 0.016},
+      {"input": "l7", "type": "hinge", "knot": 5, "coef": -0.044},
+      {"input": "l7", "type": "hinge", "knot": 6, "coef": -0.044},
+      {"input": "l7", "type": "hinge", "knot": 7, "coef": -0.022},
+      {"input": "l7", "type": "hinge", "knot": 8, "coef": -0.005},
+      {"input": "l7", "type": "hinge", "knot": 9, "coef": 0.005}
+    ],
+    "interactions": [
+      {"inputs": ["age_c", "female"], "coef": -0.014},
+      {"inputs": ["age_c", "wfns45"], "coef": -0.070},
+      {"inputs": ["age_c", "fisher34"], "coef": -0.014},
+      {"inputs": ["age_c", "ct_ivh"], "coef": 0.028},
+      {"inputs": ["age_c", "ct_ich"], "coef": -0.021},
+      {"inputs": ["age_c", "htn"], "coef": -0.013},
+      {"inputs": ["age_c", "surgery"], "coef": 0.027},
+      {"inputs": ["age_c", "urban"], "coef": -0.003},
+      {"inputs": ["age_c", "farmer"], "coef": -0.010},
+      {"inputs": ["age_c", "l7"], "coef": 0.006},
+      {"inputs": ["female", "wfns45"], "coef": 0.110},
+      {"inputs": ["female", "fisher34"], "coef": -0.015},
+      {"inputs": ["female", "ct_ivh"], "coef": -0.150},
+      {"inputs": ["female", "ct_ich"], "coef": 0.100},
+      {"inputs": ["female", "htn"], "coef": 0.130},
+      {"inputs": ["female", "surgery"], "coef": -0.027},
+      {"inputs": ["female", "urban"], "coef": -0.060},
+      {"inputs": ["female", "farmer"], "coef": -0.059},
+      {"inputs": ["female", "l7"], "coef": -0.013},
+      {"inputs": ["wfns45", "fisher34"], "coef": -0.025},
+      {"inputs": ["wfns45", "ct_ivh"], "coef": 0.053},
+      {"inputs": ["wfns45", "ct_ich"], "coef": -0.100},
+      {"inputs": ["wfns45", "htn"], "coef": -0.300},
+      {"inputs": ["wfns45", "surgery"], "coef": 0.070},
+      {"inputs": ["wfns45", "urban"], "coef": -0.093},
+      {"inputs": ["wfns45", "farmer"], "coef": 0.028},
+      {"inputs": ["wfns45", "l7"], "coef": 0.022},
+      {"inputs": ["fisher34", "ct_ivh"], "coef": -0.027},
+      {"inputs": ["fisher34", "ct_ich"], "coef": 0.041},
+      {"inputs": ["fisher34", "htn"], "coef": 0.206},
+      {"inputs": ["fisher34", "surgery"], "coef": -0.113},
+      {"inputs": ["fisher34", "urban"], "coef": 0.081},
+      {"inputs": ["fisher34", "farmer"], "coef": -0.010},
+      {"inputs": ["fisher34", "l7"], "coef": -0.025},
+      {"inputs": ["ct_ivh", "ct_ich"], "coef": -0.031},
+      {"inputs": ["ct_ivh", "htn"], "coef": -0.068},
+      {"inputs": ["ct_ivh", "surgery"], "coef": -0.095},
+      {"inputs": ["ct_ivh", "urban"], "coef": -0.032},
+      {"inputs": ["ct_ivh", "farmer"], "coef": 0.124},
+      {"inputs": ["ct_ivh", "l7"], "coef": -0.024},
+      {"inputs": ["ct_ich", "htn"], "coef": -0.057},
+      {"inputs": ["ct_ich", "surgery"], "coef": 0.084},
+      {"inputs": ["ct_ich", "urban"], "coef": 0.002},
+      {"inputs": ["ct_ich", "farmer"], "coef": -0.082},
+      {"inputs": ["ct_ich", "l7"], "coef": 0.025},
+      {"inputs": ["htn", "surgery"], "coef": -0.002},
+      {"inputs": ["htn", "urban"], "coef": 0.203},
+      {"inputs": ["htn", "farmer"], "coef": 1.574},
+      {"inputs": ["htn", "l7"], "coef": 0.018},
+      {"inputs": ["surgery", "urban"], "coef": -0.036},
+      {"inputs": ["surgery", "farmer"], "coef": -0.144},
+      {"inputs": ["surgery", "l7"], "coef": -0.010},
+      {"inputs": ["urban", "farmer"], "coef": -0.058},
+      {"inputs": ["urban", "l7"], "coef": 0.035},
+      {"inputs": ["farmer", "l7"], "coef": -0.014}
+    ]
+  },
+  "confidence_trained": 0.93
+}
+```

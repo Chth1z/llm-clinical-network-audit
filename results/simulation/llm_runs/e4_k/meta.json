@@ -1,0 +1,11 @@
+{
+ "run": "e4_k",
+ "experiment": "E4",
+ "condition": "knowledge only",
+ "target": [
+  "e4_h1",
+  "e4_h2",
+  "e4_h3",
+  "e4_null"
+ ]
+}

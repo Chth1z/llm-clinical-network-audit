@@ -1,0 +1,22 @@
+{
+ "model": "gpt-6-luna",
+ "effort": "max",
+ "started": "2026-11-05 00:59:18",
+ "seconds": 673,
+ "exit": 0,
+ "usage": {
+  "input_tokens": 14107,
+  "cached_input_tokens": 7424,
+  "cache_write_input_tokens": 0,
+  "output_tokens": 34236,
+  "reasoning_output_tokens": 32048
+ },
+ "items": {
+  "error": 1,
+  "agent_message": 1
+ },
+ "threads": [
+  "01a1a780-2f71-71a3-ad05-2dfa1d3963e1"
+ ],
+ "tool_free": true
+}

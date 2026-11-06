@@ -1,0 +1,10 @@
+{
+ "run": "e25_e16_e12c_tol_r1_x1",
+ "experiment": "E12",
+ "condition": "repair_exact",
+ "target": "e8_biased",
+ "prompt_from": "e16_e12c_tol_r1",
+ "instructions": "instructions_assume.md",
+ "variant": "assume+tolerance",
+ "replicate_of": "e16_e12c_tol_r1"
+}

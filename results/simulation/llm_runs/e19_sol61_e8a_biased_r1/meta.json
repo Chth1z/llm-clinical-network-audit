@@ -1,0 +1,12 @@
+{
+ "run": "e19_sol61_e8a_biased_r1",
+ "experiment": "E8",
+ "condition": "audit",
+ "target": "e8_biased",
+ "instructions": "instructions_assume.md",
+ "variant": "assume+calculator",
+ "tool_network": "e8_biased.json",
+ "prompt_from": "e17_e8a_biased_r1",
+ "model": "gpt-6.1-sol",
+ "replicate_of": null
+}

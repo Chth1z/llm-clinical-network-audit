@@ -1,0 +1,228 @@
+{
+ "effects": {
+  "age_c": {
+   "direction": "increases risk",
+   "size": "large, nonlinear; sharp rise",
+   "rank": 1
+  },
+  "female": {
+   "direction": "decreases risk",
+   "size": "moderate decrease",
+   "rank": 4
+  },
+  "wfns45": {
+   "direction": "increases risk",
+   "size": "large increase",
+   "rank": 3
+  },
+  "fisher34": {
+   "direction": "increases risk",
+   "size": "modest increase",
+   "rank": 8
+  },
+  "ct_ivh": {
+   "direction": "increases risk",
+   "size": "moderate increase",
+   "rank": 5
+  },
+  "ct_ich": {
+   "direction": "increases risk",
+   "size": "small increase",
+   "rank": 10
+  },
+  "htn": {
+   "direction": "no clear effect",
+   "size": "small, context-dependent",
+   "rank": 11
+  },
+  "surgery": {
+   "direction": "decreases risk",
+   "size": "very large decrease",
+   "rank": 2
+  },
+  "urban": {
+   "direction": "increases risk",
+   "size": "modest increase",
+   "rank": 7
+  },
+  "farmer": {
+   "direction": "decreases risk",
+   "size": "modest decrease",
+   "rank": 9
+  },
+  "l7": {
+   "direction": "no clear effect",
+   "size": "small-to-moderate; reverses",
+   "rank": 6
+  }
+ },
+ "interactions": [
+  "Age's steep rise shifts with other inputs; the age threshold is not fixed.",
+  "WFNS and Fisher partly overlap in the hidden units, so their combined effect is less than additive in the reference profile.",
+  "The surgery effect depends on WFNS and hypertension through hidden-unit saturation.",
+  "Urban and farmer have a non-additive combined effect."
+ ],
+ "unexpected": [
+  {
+   "inputs": [
+    "age_c"
+   ],
+   "description": "The score can be higher at very young ages than around 60, then rise sharply with age; this is not a simple monotone age effect.",
+   "where": "The age-related turn is near age_c 0.63 (about age 66) when other inputs are zero."
+  },
+  {
+   "inputs": [
+    "l7"
+   ],
+   "description": "The net laboratory relationship is non-monotone: it initially lowers the score, then rises at high values as competing hidden-unit effects change.",
+   "where": "On the zero-binary reference profile the score turns upward at roughly l7 5; hidden unit 5 itself crosses zero near l7 2.76."
+  },
+  {
+   "inputs": [
+    "urban",
+    "farmer"
+   ],
+   "description": "Urban residence raises the score while farmer occupation lowers it, an unusual demographic pattern that may reflect cohort structure rather than a general relationship.",
+   "where": "For each binary input, the change is from 0 to 1; effects are conditional on the other inputs."
+  }
+ ],
+ "surrogate": {
+  "intercept": -4.155,
+  "terms": [
+   {
+    "input": "age_c",
+    "type": "linear",
+    "coef": -0.5
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": 2.67,
+    "knot": 0.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": 3.17,
+    "knot": 0.5
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -4.52,
+    "knot": 1.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.65,
+    "knot": 2.0
+   },
+   {
+    "input": "age_c",
+    "type": "hinge",
+    "coef": -0.17,
+    "knot": 3.0
+   },
+   {
+    "input": "l7",
+    "type": "linear",
+    "coef": -0.186
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.265,
+    "knot": 1.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": -0.11,
+    "knot": 2.0
+   },
+   {
+    "input": "l7",
+    "type": "hinge",
+    "coef": 0.166,
+    "knot": 5.0
+   },
+   {
+    "input": "female",
+    "type": "linear",
+    "coef": -0.6
+   },
+   {
+    "input": "wfns45",
+    "type": "linear",
+    "coef": 1.75
+   },
+   {
+    "input": "fisher34",
+    "type": "linear",
+    "coef": 0.48
+   },
+   {
+    "input": "ct_ivh",
+    "type": "linear",
+    "coef": 0.57
+   },
+   {
+    "input": "ct_ich",
+    "type": "linear",
+    "coef": 0.27
+   },
+   {
+    "input": "htn",
+    "type": "linear",
+    "coef": -0.06
+   },
+   {
+    "input": "surgery",
+    "type": "linear",
+    "coef": -2.05
+   },
+   {
+    "input": "urban",
+    "type": "linear",
+    "coef": 0.53
+   },
+   {
+    "input": "farmer",
+    "type": "linear",
+    "coef": -0.45
+   }
+  ],
+  "interactions": [
+   {
+    "inputs": [
+     "wfns45",
+     "fisher34"
+    ],
+    "coef": -0.53
+   },
+   {
+    "inputs": [
+     "wfns45",
+     "surgery"
+    ],
+    "coef": 0.23
+   },
+   {
+    "inputs": [
+     "htn",
+     "surgery"
+    ],
+    "coef": 0.68
+   },
+   {
+    "inputs": [
+     "urban",
+     "farmer"
+    ],
+    "coef": 0.42
+   }
+  ]
+ },
+ "confidence_trained": 0.85
+}

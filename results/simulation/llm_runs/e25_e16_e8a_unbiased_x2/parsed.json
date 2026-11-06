@@ -1,0 +1,27 @@
+{
+ "subgroups": [
+  {
+   "conditions": [
+    {
+     "input": "urban",
+     "op": "==",
+     "value": 1
+    }
+   ],
+   "logit_shift": -0.3,
+   "description": "Urban residents receive approximately 0.3 lower log-odds than otherwise-matched non-urban residents."
+  },
+  {
+   "conditions": [
+    {
+     "input": "farmer",
+     "op": "==",
+     "value": 1
+    }
+   ],
+   "logit_shift": -0.15,
+   "description": "Farmers receive approximately 0.15 lower log-odds on average than otherwise-matched non-farmers."
+  }
+ ],
+ "confidence_trained": 0.99
+}

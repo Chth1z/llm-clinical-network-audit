@@ -1,0 +1,172 @@
+The network is **not a fixed weighted risk score**. Its local log-odds slope for input \(x_i\) is
+\[
+\sum_j W_{2j}W_{1ji}\bigl[1-\tanh^2(W_{1j}x+b_{1j})\bigr].
+\]
+Thus, saturation changes which paths matter, and opposing paths can reverse an input’s effect.
+
+WFNS 4–5 and treatment have particularly consistent opposing directions: 15 of 16 paths respectively increase and decrease log-odds. Laboratory effects are much less straightforward. With laboratories near 5, hidden units 1, 5, 7 and 10 are almost saturated and together contribute approximately **−1.3124 log-odds**. Weak average laboratory effects can conceal substantial conditional effects.
+
+Without an input distribution, importance ranks are not uniquely defined. Below, directions and ranks describe **approximate marginal effects**, using independent binary inputs with probability 0.5, laboratories uniformly distributed over 0–10, and ages uniformly distributed over 18–90. “No clear effect” means mixed/nonmonotone, not unused. The surrogate is an **analytic approximation, not a numerically fitted or fidelity-tested replacement**; higher-order interactions prevent exact reproduction within this restricted form.
+
+Treatment “during admission” is not genuinely an admission-only predictor, and its association is not a causal treatment effect. The training-confidence number is subjective: coherent weight structure argues against scrambling, but cannot establish provenance or clinical validity.
+
+```json
+{
+  "effects": {
+    "age_c": {"direction": "increases risk", "size": "large average effect", "rank": 1},
+    "female": {"direction": "no clear effect", "size": "near-zero average; context-dependent", "rank": 20},
+    "wfns45": {"direction": "increases risk", "size": "large; strongly consistent", "rank": 2},
+    "fisher34": {"direction": "increases risk", "size": "moderate average effect", "rank": 6},
+    "ct_ivh": {"direction": "increases risk", "size": "moderate average effect", "rank": 4},
+    "ct_ich": {"direction": "increases risk", "size": "moderate average effect", "rank": 5},
+    "htn": {"direction": "increases risk", "size": "small average effect", "rank": 10},
+    "surgery": {"direction": "decreases risk", "size": "large; strongly consistent", "rank": 3},
+    "urban": {"direction": "decreases risk", "size": "small average effect", "rank": 9},
+    "farmer": {"direction": "decreases risk", "size": "small average effect", "rank": 12},
+    "l1": {"direction": "decreases risk", "size": "weak average; context-dependent", "rank": 13},
+    "l2": {"direction": "decreases risk", "size": "modest average; context-dependent", "rank": 8},
+    "l3": {"direction": "no clear effect", "size": "small, nonmonotone marginal effect", "rank": 17},
+    "l4": {"direction": "no clear effect", "size": "tiny average; context-dependent", "rank": 19},
+    "l5": {"direction": "decreases risk", "size": "modest average; context-dependent", "rank": 7},
+    "l6": {"direction": "no clear effect", "size": "weak, nonmonotone marginal effect", "rank": 14},
+    "l7": {"direction": "no clear effect", "size": "weak negative average; reversals", "rank": 15},
+    "l8": {"direction": "no clear effect", "size": "weak, nonmonotone marginal effect", "rank": 16},
+    "l9": {"direction": "decreases risk", "size": "weak average; context-dependent", "rank": 11},
+    "l10": {"direction": "no clear effect", "size": "weak, nonmonotone marginal effect", "rank": 18}
+  },
+  "unexpected": [
+    {
+      "inputs": ["farmer"],
+      "description": "Farmer status lowers predicted risk on average, rather than acting as a risk-increasing socioeconomic marker. This is a model association, not a protective causal effect.",
+      "where": "Changing farmer from 0 to 1; the approximate reference-average log-odds change is -0.12."
+    },
+    {
+      "inputs": ["l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8", "l9", "l10"],
+      "description": "Increasing all ten laboratories together can sharply lower risk. At age 60 with every binary input zero, setting all laboratories to 0 gives approximately 36.1% risk, whereas setting all to 5 gives approximately 5.1%. Their identities are unknown, so this is a numerical finding, not a physiological interpretation.",
+      "where": "Along l1 = ... = l10 = t. Four negative-contributing hidden units reach absolute preactivation 2 at approximately t = 1.06, 1.14, 1.34 and 1.53."
+    },
+    {
+      "inputs": ["l7"],
+      "description": "A conditional U-shaped relationship: risk is approximately 6.3% at l7 = 0, 5.1% at l7 = 5 and 6.4% at l7 = 10. Thus its weak negative average does not imply monotone protection.",
+      "where": "Age 60, all binary inputs zero, all other laboratories 5; the conditional minimum is near l7 = 4.3."
+    }
+  ],
+  "surrogate": {
+    "intercept": -1.419348,
+    "terms": [
+      {"input": "age_c", "type": "linear", "coef": 0.372147},
+      {"input": "female", "type": "linear", "coef": -0.00462},
+      {"input": "wfns45", "type": "linear", "coef": 1.781461},
+      {"input": "fisher34", "type": "linear", "coef": 0.388776},
+      {"input": "ct_ivh", "type": "linear", "coef": 0.467368},
+      {"input": "ct_ich", "type": "linear", "coef": 0.461419},
+      {"input": "htn", "type": "linear", "coef": 0.178004},
+      {"input": "surgery", "type": "linear", "coef": -1.392056},
+      {"input": "urban", "type": "linear", "coef": -0.185709},
+      {"input": "farmer", "type": "linear", "coef": -0.12133},
+      {"input": "l1", "type": "linear", "coef": -0.039951},
+      {"input": "l2", "type": "linear", "coef": -0.067441},
+      {"input": "l3", "type": "linear", "coef": 0.007312},
+      {"input": "l4", "type": "linear", "coef": 0.00838},
+      {"input": "l5", "type": "linear", "coef": -0.089688},
+      {"input": "l6", "type": "linear", "coef": -0.033333},
+      {"input": "l7", "type": "linear", "coef": -0.016909},
+      {"input": "l8", "type": "linear", "coef": -0.015967},
+      {"input": "l9", "type": "linear", "coef": -0.007864},
+      {"input": "l10", "type": "linear", "coef": -0.000921},
+      {"input": "age_c", "type": "hinge", "knot": -2.4, "coef": 0.086886},
+      {"input": "age_c", "type": "hinge", "knot": -0.6, "coef": 0.021588},
+      {"input": "age_c", "type": "hinge", "knot": 1.2, "coef": -0.043712},
+      {"input": "l1", "type": "hinge", "knot": 2.5, "coef": 0.012518},
+      {"input": "l1", "type": "hinge", "knot": 5, "coef": 0.012518},
+      {"input": "l1", "type": "hinge", "knot": 7.5, "coef": 0.012518},
+      {"input": "l2", "type": "hinge", "knot": 2.5, "coef": 0.015935},
+      {"input": "l2", "type": "hinge", "knot": 5, "coef": 0.015935},
+      {"input": "l2", "type": "hinge", "knot": 7.5, "coef": 0.015935},
+      {"input": "l3", "type": "hinge", "knot": 2.5, "coef": 0.014208},
+      {"input": "l3", "type": "hinge", "knot": 5, "coef": 0.014208},
+      {"input": "l3", "type": "hinge", "knot": 7.5, "coef": 0.014208},
+      {"input": "l4", "type": "hinge", "knot": 2.5, "coef": 0.003348},
+      {"input": "l4", "type": "hinge", "knot": 5, "coef": 0.003348},
+      {"input": "l4", "type": "hinge", "knot": 7.5, "coef": 0.003348},
+      {"input": "l5", "type": "hinge", "knot": 2.5, "coef": 0.013133},
+      {"input": "l5", "type": "hinge", "knot": 5, "coef": 0.013133},
+      {"input": "l5", "type": "hinge", "knot": 7.5, "coef": 0.013133},
+      {"input": "l6", "type": "hinge", "knot": 2.5, "coef": 0.016493},
+      {"input": "l6", "type": "hinge", "knot": 5, "coef": 0.016493},
+      {"input": "l6", "type": "hinge", "knot": 7.5, "coef": 0.016493},
+      {"input": "l7", "type": "hinge", "knot": 2.5, "coef": 0.000105},
+      {"input": "l7", "type": "hinge", "knot": 5, "coef": 0.000105},
+      {"input": "l7", "type": "hinge", "knot": 7.5, "coef": 0.000105},
+      {"input": "l8", "type": "hinge", "knot": 2.5, "coef": 0.010198},
+      {"input": "l8", "type": "hinge", "knot": 5, "coef": 0.010198},
+      {"input": "l8", "type": "hinge", "knot": 7.5, "coef": 0.010198},
+      {"input": "l9", "type": "hinge", "knot": 2.5, "coef": 0.00089},
+      {"input": "l9", "type": "hinge", "knot": 5, "coef": 0.00089},
+      {"input": "l9", "type": "hinge", "knot": 7.5, "coef": 0.00089},
+      {"input": "l10", "type": "hinge", "knot": 2.5, "coef": 0.008258},
+      {"input": "l10", "type": "hinge", "knot": 5, "coef": 0.008258},
+      {"input": "l10", "type": "hinge", "knot": 7.5, "coef": 0.008258}
+    ],
+    "interactions": [
+      {"inputs": ["age_c", "l1"], "coef": 0.0056},
+      {"inputs": ["age_c", "l2"], "coef": -0.001},
+      {"inputs": ["age_c", "l3"], "coef": -0.0061},
+      {"inputs": ["age_c", "l4"], "coef": -0.0043},
+      {"inputs": ["age_c", "l5"], "coef": 0.0038},
+      {"inputs": ["age_c", "l6"], "coef": 0.0025},
+      {"inputs": ["age_c", "l7"], "coef": -0.007},
+      {"inputs": ["age_c", "l8"], "coef": 0.0024},
+      {"inputs": ["age_c", "l9"], "coef": 0.0052},
+      {"inputs": ["age_c", "l10"], "coef": -0.0058},
+      {"inputs": ["wfns45", "l1"], "coef": -0.0089},
+      {"inputs": ["wfns45", "l2"], "coef": -0.002},
+      {"inputs": ["wfns45", "l3"], "coef": -0.0068},
+      {"inputs": ["wfns45", "l5"], "coef": -0.0035},
+      {"inputs": ["wfns45", "l6"], "coef": -0.0226},
+      {"inputs": ["wfns45", "l7"], "coef": -0.0177},
+      {"inputs": ["wfns45", "l8"], "coef": 0.0107},
+      {"inputs": ["wfns45", "l9"], "coef": 0.0183},
+      {"inputs": ["wfns45", "l10"], "coef": -0.016},
+      {"inputs": ["surgery", "l1"], "coef": 0.0095},
+      {"inputs": ["surgery", "l2"], "coef": -0.0065},
+      {"inputs": ["surgery", "l3"], "coef": 0.0041},
+      {"inputs": ["surgery", "l4"], "coef": 0.006},
+      {"inputs": ["surgery", "l5"], "coef": 0.0039},
+      {"inputs": ["surgery", "l6"], "coef": 0.0074},
+      {"inputs": ["surgery", "l7"], "coef": 0.011},
+      {"inputs": ["surgery", "l8"], "coef": -0.0006},
+      {"inputs": ["surgery", "l9"], "coef": -0.0084},
+      {"inputs": ["surgery", "l10"], "coef": 0.0071},
+      {"inputs": ["wfns45", "surgery"], "coef": -0.0541},
+      {"inputs": ["l1", "l2"], "coef": 0.0017},
+      {"inputs": ["l1", "l4"], "coef": -0.0019},
+      {"inputs": ["l1", "l5"], "coef": 0.0054},
+      {"inputs": ["l1", "l6"], "coef": 0.0024},
+      {"inputs": ["l1", "l7"], "coef": -0.0031},
+      {"inputs": ["l1", "l10"], "coef": -0.0034},
+      {"inputs": ["l2", "l3"], "coef": 0.003},
+      {"inputs": ["l2", "l5"], "coef": 0.0022},
+      {"inputs": ["l2", "l9"], "coef": -0.0025},
+      {"inputs": ["l2", "l10"], "coef": -0.0021},
+      {"inputs": ["l3", "l6"], "coef": -0.0026},
+      {"inputs": ["l3", "l7"], "coef": -0.0026},
+      {"inputs": ["l3", "l10"], "coef": -0.0027},
+      {"inputs": ["l4", "l5"], "coef": -0.0019},
+      {"inputs": ["l4", "l7"], "coef": 0.0021},
+      {"inputs": ["l4", "l8"], "coef": -0.0016},
+      {"inputs": ["l4", "l9"], "coef": -0.0026},
+      {"inputs": ["l4", "l10"], "coef": 0.0023},
+      {"inputs": ["l5", "l6"], "coef": 0.0024},
+      {"inputs": ["l5", "l8"], "coef": 0.0019},
+      {"inputs": ["l5", "l9"], "coef": -0.0036},
+      {"inputs": ["l6", "l8"], "coef": -0.0017},
+      {"inputs": ["l7", "l9"], "coef": 0.0022},
+      {"inputs": ["l7", "l10"], "coef": 0.0015},
+      {"inputs": ["l8", "l10"], "coef": -0.0016},
+      {"inputs": ["l9", "l10"], "coef": 0.0028}
+    ]
+  },
+  "confidence_trained": 0.95
+}
+```

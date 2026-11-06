@@ -1,0 +1,6 @@
+2026-11-04T17:45:57.953458Z ERROR codex_core::tools::router: error=code-mode host is disabled
+2026-11-04T17:46:02.230434Z ERROR codex_core::tools::router: error=code-mode host is disabled
+2026-11-04T17:49:10.604032Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown
+2026-11-04T17:49:16.001313Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown
+2026-11-04T17:49:24.390750Z ERROR codex_api::endpoint::responses_websocket: failed to connect to Responses WebSocket stage=Unknown
+2026-11-04T17:55:01.534661Z ERROR codex_models_manager::manager: failed to refresh available models: request timed out

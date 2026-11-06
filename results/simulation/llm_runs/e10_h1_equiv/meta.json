@@ -1,0 +1,7 @@
+{
+ "run": "e10_h1_equiv",
+ "experiment": "E10",
+ "condition": "weights",
+ "target": "e10_h1_equiv",
+ "note": "E10: function-preserving rewrite of e4_h1"
+}

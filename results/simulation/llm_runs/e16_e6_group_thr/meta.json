@@ -1,0 +1,13 @@
+{
+ "run": "e16_e6_group_thr",
+ "experiment": "E6",
+ "condition": "group",
+ "target": [
+  "e6_group_thr_1",
+  "e6_group_thr_2",
+  "e6_group_thr_3"
+ ],
+ "instructions": "instructions_assume.md",
+ "variant": "assume",
+ "prompt_from": "e6_group_thr"
+}

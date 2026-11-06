@@ -1,0 +1,26 @@
+{
+ "subgroups": [
+  {
+   "conditions": [
+    {
+     "input": "age_c",
+     "op": ">",
+     "value": 0.5
+    },
+    {
+     "input": "female",
+     "op": "==",
+     "value": 1
+    },
+    {
+     "input": "farmer",
+     "op": "==",
+     "value": 1
+    }
+   ],
+   "logit_shift": -1.2,
+   "description": "Female farmers older than 65 have approximately 1.2 lower log-odds than the additive reference, without an established aSAH prognostic explanation."
+  }
+ ],
+ "confidence_trained": 0.97
+}
